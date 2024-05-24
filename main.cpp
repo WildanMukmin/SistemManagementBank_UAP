@@ -3,7 +3,12 @@ using namespace std;
 
 void createAkun();
 bool login(string nama, string kataSandi);
-string generateRandomNoRek();
+void infoAkun(string nama);
+void transfer(string nama, deque<string> listPengguna);
+string noRek(string nama);
+long long unsigned int saldo(string nama);
+void updateSaldo(string nama, long long unsigned int saldoTerbaru);
+string generateRandomNoRek(int n);
 class Nasabah;
 
 int main(){
@@ -25,11 +30,24 @@ int main(){
         if(valid){
             goto HOME;
         }else{
+            cout << endl;
             cout << "Nama atau Kata sandi salah!" << endl;
             cout << "Mohon masukan dengan benar!" << endl;
-            goto FORM;
+
+            cout << endl;
+            cout << endl;
+            PERINTAHSALAH:
+            cout << "Coba lagi atau buat akun?"<<endl;
+            cout << "1. untuk coba lagi"<<endl;
+            cout << "2. untuk buat akun"<<endl;
+            char pilihan2; cin >> pilihan2;
+            if(pilihan2 == '1') goto FORM;
+            else if(pilihan2 == '2') goto FORMCREATEAKUN;
+            else goto PERINTAHSALAH;
+            
         }
     }else if(pilihan == '2'){
+        FORMCREATEAKUN:
         createAkun();
         goto GATEWAY;
     }
@@ -46,6 +64,19 @@ int main(){
 	}
 	checkListPengguna.close();
     // <---------------- end pengecekan data yang sudah ada ---------------->
+
+    cout << "login berhasil" << endl << endl;
+    
+    cout << "Masukan Pilihan Anda" << endl;
+    cout << "1. Info Akun" << endl;
+    cout << "2. Transfer" << endl;
+    cout << "3. Riwayat Transaksi" << endl;
+    cout << "4. Log Out" << endl;
+    char pilihanHome; cin >> pilihanHome;
+
+    if(pilihanHome == '1') infoAkun(nama);
+    else if(pilihanHome == '2') transfer(nama, listPengguna);
+
 
     return 0;
 }
@@ -102,8 +133,16 @@ void createAkun()
 	cin >> nama;
 	string kataSandi;
 	cin >> kataSandi;
-
-    Nasabah(nama, kataSandi, generateRandomNoRek());
+    deque <string> listPengguna;
+    ifstream checkListPengguna;
+	checkListPengguna.open("listPengguna.txt");
+    string data;
+	while (!checkListPengguna.eof()){
+		checkListPengguna >> data;
+        listPengguna.push_back(data);
+	}
+	checkListPengguna.close();
+    Nasabah(nama, kataSandi, generateRandomNoRek(listPengguna.size() + 1));
 }
 
 // pilihan dari login
@@ -120,13 +159,101 @@ bool login(string nama, string kataSandi)
 }
 
 // Fungsi untuk menghasilkan nomor rekening acak
-string generateRandomNoRek()
-{
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_int_distribution<unsigned long long> dis(1000000000, 9999999999);
+string generateRandomNoRek(int n)
+{   
+    for(int i = 0; i < n; i++){
+        static random_device rd;
+        static mt19937 gen(rd());
+        static uniform_int_distribution<unsigned long long> dis(1000000000, 9999999999);
 
         // Menghasilkan nomor acak dan mengkonversinya ke string
         unsigned long long randomNumber = dis(gen);
-        return to_string(randomNumber);
+        if(i == n-1)return to_string(randomNumber);
     }
+}
+
+void infoAkun(string nama){
+    cout << "Nomor Rekening Anda : " << noRek(nama) << endl;
+    cout << "Saldo Anda : " << saldo(nama) << endl;
+}
+
+string noRek(string nama){
+	string output;
+
+	ifstream verifikasi;
+	verifikasi.open(nama + "/nomorRekening.txt"); // sesuain dengan lokasi
+    verifikasi >> output;
+    verifikasi.close();
+    
+    return output;
+}
+
+long long unsigned int saldo(string nama){
+	string output;
+
+	ifstream verifikasi;
+	verifikasi.open(nama + "/saldo.txt"); // sesuain dengan lokasi
+    verifikasi >> output;
+    verifikasi.close();
+    
+    return stoull(output);
+}
+
+void transfer(string nama, deque<string> listPengguna){
+    cout << "Masukan Nomor Rekening Tujuan : ";
+    string noRekTujuan;cin >> noRekTujuan;
+    cout << "Masukan Nominal Transfer : ";
+    long long unsigned int nominalTransfer;cin >> nominalTransfer;
+    string namaTujuan;
+
+    cout << "Apakah Rekening dan Nominal Sudah Sesuai? (y/n)" << endl;
+    char konfirTransfer; cin >> konfirTransfer;
+    if(konfirTransfer == 'y' || konfirTransfer == 'Y'){
+        ULANGIVERIFIKASIPIN:
+        cout << "Masukan PIN Anda : ";
+        string pin;cin >> pin;
+        if(login(nama, pin)){
+            cout << "Transfer Berhasil" << endl;
+        }else{
+            cout << "PIN anda Salah" << endl;
+            goto ULANGIVERIFIKASIPIN;
+        }
+    }else {
+        cout << "Transaksi dibatalkan!" << endl;
+        return;
+    }
+
+    for(auto i : listPengguna){
+        string output;
+        
+        ifstream verifikasi;
+        verifikasi.open(i + "/nomorRekening.txt"); // sesuain dengan lokasi
+        verifikasi >> output;
+        verifikasi.close();
+
+        if(output == noRekTujuan){
+            namaTujuan = i;
+            break;
+        }
+    }
+
+    long long unsigned int saldoPengirim, saldoPenerima;
+    saldoPengirim = saldo(nama);
+    saldoPenerima = saldo(namaTujuan);
+
+    saldoPengirim -= nominalTransfer;
+    saldoPenerima += nominalTransfer;
+
+    updateSaldo(nama, saldoPengirim);
+    updateSaldo(namaTujuan, saldoPenerima);
+
+    cout << "Transfer Berhasil Dari " << nama << " ke " << namaTujuan << endl;
+    cout << "sejumlah " << nominalTransfer << endl;
+}
+
+void updateSaldo(string nama, long long unsigned int saldoTerbaru){
+    ofstream saldo;
+    saldo.open(nama + "/saldo.txt");
+    saldo << saldoTerbaru;
+    saldo.close();
+}
