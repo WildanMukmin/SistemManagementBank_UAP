@@ -1,18 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// <------------------ Prototype ------------------>
+
 void createAkun();
-bool login(string nama, string kataSandi);
+bool login(string nama, string pin);
+deque<string> database();
 void infoAkun(string nama);
 void transfer(string nama, deque<string> listPengguna);
-string noRek(string nama);
-long long unsigned int saldo(string nama);
+string getNoRek(string nama);
+long long unsigned int getSaldo(string nama);
 void updateSaldo(string nama, long long unsigned int saldoTerbaru);
 string generateRandomNoRek(int n);
+string getStatusRiwayatTransaksiMasuk(string nama);
+void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nominal);
+string getStatusRiwayatTransaksiKeluar(string nama);
+void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal);
+void menuRiwayatTransaksi(string nama);
+void readFile(string nama, string fileTujuan);
 class Nasabah;
 
+// <------------------ End Prototype ------------------>
+
+
 int main(){
-    string nama, kataSandi;
+    string nama, pin;
 
     cout << "selamat datang" << endl;
     
@@ -25,13 +37,13 @@ int main(){
     if(pilihan == '1'){
         FORM:
         cout << "Masukan Nama Anda : ";cin >> nama;
-        cout << "Masukan kata sandi Anda : ";cin >> kataSandi;
-        bool valid = login(nama, kataSandi);
+        cout << "Masukan PIN Anda : ";cin >> pin;
+        bool valid = login(nama, pin);
         if(valid){
             goto HOME;
         }else{
             cout << endl;
-            cout << "Nama atau Kata sandi salah!" << endl;
+            cout << "Nama atau PIN salah!" << endl;
             cout << "Mohon masukan dengan benar!" << endl;
 
             cout << endl;
@@ -54,19 +66,16 @@ int main(){
 
     HOME:
     // <---------------- pengecekan data yang sudah ada ---------------->
-    deque <string> listPengguna;
-    ifstream checkListPengguna;
-	checkListPengguna.open("listPengguna.txt");
-    string data;
-	while (!checkListPengguna.eof()){
-		checkListPengguna >> data;
-        listPengguna.push_back(data);
-	}
-	checkListPengguna.close();
+
+    deque <string> listPengguna = database();
+
     // <---------------- end pengecekan data yang sudah ada ---------------->
 
-    cout << "login berhasil" << endl << endl;
-    
+
+    // <---------------- Menu Home ---------------->
+
+    cout << "login berhasil" << endl << endl;    
+
     cout << "Masukan Pilihan Anda" << endl;
     cout << "1. Info Akun" << endl;
     cout << "2. Transfer" << endl;
@@ -76,27 +85,31 @@ int main(){
 
     if(pilihanHome == '1') infoAkun(nama);
     else if(pilihanHome == '2') transfer(nama, listPengguna);
+    else if(pilihanHome == '3') menuRiwayatTransaksi(nama);
 
+    // <---------------- End Menu Home ---------------->
 
     return 0;
 }
 
+
+// <------------------ Fungsi Fungsi Utama ------------------>
+
 // class nasabah
-class Nasabah
-{
+class Nasabah{
     private:
-    string nama, kataSandi, noRek;
+    string nama, pin, noRek;
     unsigned long long int saldo;
 
     public:
-    Nasabah(string nama, string kataSandi, string noRek) : nama(nama), kataSandi(kataSandi), noRek(noRek) {
+    Nasabah(string nama, string pin, string noRek) : nama(nama), pin(pin), noRek(noRek) {
         string buatFile = "mkdir " + nama;
         system(buatFile.c_str());
 
         ofstream akun;
         akun.open(nama + "/userAkun.txt", ios::app);
         akun << nama;
-        akun << kataSandi;
+        akun << pin;
         akun.close();
 
         ofstream nomorRekening;
@@ -109,10 +122,15 @@ class Nasabah
         saldo << 0;
         saldo.close();
         
-        ofstream riwayatTransaksi;
-        riwayatTransaksi.open(nama + "/riwayatTransaksi.txt", ios::app);
-        riwayatTransaksi << "Belum Ada Transaksi";
-        riwayatTransaksi.close();
+        ofstream riwayatTransaksiMasuk;
+        riwayatTransaksiMasuk.open(nama + "/riwayatTransaksiMasuk.txt", ios::app);
+        riwayatTransaksiMasuk << "Belum Ada Transaksi";
+        riwayatTransaksiMasuk.close();
+        
+        ofstream riwayatTransaksiKeluar;
+        riwayatTransaksiKeluar.open(nama + "/riwayatTransaksiKeluar.txt", ios::app);
+        riwayatTransaksiKeluar << "Belum Ada Transaksi";
+        riwayatTransaksiKeluar.close();
 
         // untuk masukin ke stack nya
         ofstream listPengguna;
@@ -127,12 +145,11 @@ class Nasabah
 };
 
 // pilihan buat akun
-void createAkun()
-{   
+void createAkun(){   
 	string nama;
 	cin >> nama;
-	string kataSandi;
-	cin >> kataSandi;
+	string pin;
+	cin >> pin;
     deque <string> listPengguna;
     ifstream checkListPengguna;
 	checkListPengguna.open("listPengguna.txt");
@@ -142,25 +159,37 @@ void createAkun()
         listPengguna.push_back(data);
 	}
 	checkListPengguna.close();
-    Nasabah(nama, kataSandi, generateRandomNoRek(listPengguna.size() + 1));
+    Nasabah(nama, pin, generateRandomNoRek(listPengguna.size()));
 }
 
 // pilihan dari login
-bool login(string nama, string kataSandi)
-{
+bool login(string nama, string pin){
 	string output;
 
 	ifstream verifikasi;
 	verifikasi.open(nama + "/userAkun.txt"); // sesuain dengan lokasi
     verifikasi >> output;
-    if (output == nama + kataSandi) return true;
+    if (output == nama + pin) return true;
     verifikasi.close();
     return false;
 }
 
+// Generate Database
+deque<string> database(){
+    deque <string> listPengguna;
+    ifstream checkListPengguna;
+	checkListPengguna.open("listPengguna.txt");
+    string data;
+	while (!checkListPengguna.eof()){
+		checkListPengguna >> data;
+        listPengguna.push_back(data);
+	}
+	checkListPengguna.close();
+    return listPengguna;
+}
+ 
 // Fungsi untuk menghasilkan nomor rekening acak
-string generateRandomNoRek(int n)
-{   
+string generateRandomNoRek(int n){   
     for(int i = 0; i < n; i++){
         static random_device rd;
         static mt19937 gen(rd());
@@ -168,16 +197,18 @@ string generateRandomNoRek(int n)
 
         // Menghasilkan nomor acak dan mengkonversinya ke string
         unsigned long long randomNumber = dis(gen);
-        if(i == n-1)return to_string(randomNumber);
+        if(i == n - 1)return to_string(randomNumber);
     }
 }
 
+// Fungsi Menampilkan Detail Informasi Akun
 void infoAkun(string nama){
-    cout << "Nomor Rekening Anda : " << noRek(nama) << endl;
-    cout << "Saldo Anda : " << saldo(nama) << endl;
+    cout << "Nomor Rekening Anda : " << getNoRek(nama) << endl;
+    cout << "Saldo Anda : " << getSaldo(nama) << endl;
 }
 
-string noRek(string nama){
+// Fungsi mengambil nomor rekening
+string getNoRek(string nama){
 	string output;
 
 	ifstream verifikasi;
@@ -188,7 +219,8 @@ string noRek(string nama){
     return output;
 }
 
-long long unsigned int saldo(string nama){
+// Fungsi untuk mengambil saldo
+long long unsigned int getSaldo(string nama){
 	string output;
 
 	ifstream verifikasi;
@@ -199,6 +231,7 @@ long long unsigned int saldo(string nama){
     return stoull(output);
 }
 
+// Funsgi untuk melakukan transfer
 void transfer(string nama, deque<string> listPengguna){
     cout << "Masukan Nomor Rekening Tujuan : ";
     string noRekTujuan;cin >> noRekTujuan;
@@ -238,8 +271,8 @@ void transfer(string nama, deque<string> listPengguna){
     }
 
     long long unsigned int saldoPengirim, saldoPenerima;
-    saldoPengirim = saldo(nama);
-    saldoPenerima = saldo(namaTujuan);
+    saldoPengirim = getSaldo(nama);
+    saldoPenerima = getSaldo(namaTujuan);
 
     saldoPengirim -= nominalTransfer;
     saldoPenerima += nominalTransfer;
@@ -249,11 +282,84 @@ void transfer(string nama, deque<string> listPengguna){
 
     cout << "Transfer Berhasil Dari " << nama << " ke " << namaTujuan << endl;
     cout << "sejumlah " << nominalTransfer << endl;
+    updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
+    updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
 }
 
+// Fungsi untuk mengupdate saldo
 void updateSaldo(string nama, long long unsigned int saldoTerbaru){
     ofstream saldo;
     saldo.open(nama + "/saldo.txt");
     saldo << saldoTerbaru;
     saldo.close();
 }
+
+// update riwayat transaksi masuk
+void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nominal){
+    ofstream updateRTM;
+    
+    (getStatusRiwayatTransaksiMasuk(nama) == "BelumAdaTransaksi") ? updateRTM.open(nama + "/riwayatTransaksiMasuk.txt") : updateRTM.open(nama + "/riwayatTransaksiMasuk.txt", ios::app);
+    updateRTM << "Uang masuk dari : " << namaPengirim << " sebanyak " << nominal << endl;
+    updateRTM.close();
+}
+
+// string namaPenerima update riwayat transaksi keluar
+void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal){
+    ofstream updateRTK;
+
+    (getStatusRiwayatTransaksiKeluar(nama) == "BelumAdaTransaksi") ? updateRTK.open(nama + "/riwayatTransaksiKeluar.txt") : updateRTK.open(nama + "/riwayatTransaksiKeluar.txt", ios::app);
+    updateRTK << "Mengirim Uang ke : " << namaPenerima << " sebanyak " << nominal << endl;
+    updateRTK.close();
+}
+
+// melihat status riswayat transasksi masuk saat ini
+string getStatusRiwayatTransaksiMasuk(string nama){
+    string output, temp;
+    
+	ifstream verifikasi;
+	verifikasi.open(nama + "/riwayatTransaksiMasuk.txt"); // sesuain dengan lokasi
+    while(!verifikasi.eof()){
+    verifikasi >> temp;
+    output += temp;
+    }
+    verifikasi.close();
+    
+    return output;
+}
+
+// melihat status riswayat transasksi keluar saat ini
+string getStatusRiwayatTransaksiKeluar(string nama){
+    string output, temp;
+    
+	ifstream verifikasi;
+	verifikasi.open(nama + "/riwayatTransaksiKeluar.txt"); // sesuain dengan lokasi
+    while(!verifikasi.eof()){
+    verifikasi >> temp;
+    output += temp;
+    }
+    verifikasi.close();
+    
+    return output;
+}
+
+// tampilan menu riwayat transaksi
+void menuRiwayatTransaksi(string nama){
+    cout << "1. riwayat transaksi masuk" << endl;
+    cout << "2. riwayat transaksi keluar" << endl;
+    
+    cout << "masukan pilihan anda : ";
+    char pilihanMenuRiwayatTransaksi; cin >> pilihanMenuRiwayatTransaksi;
+    (pilihanMenuRiwayatTransaksi == '1') ? readFile(nama, "riwayatTransaksiMasuk") : readFile(nama, "riwayatTransaksiKeluar");
+}
+
+void readFile(string nama, string fileTujuan){
+    ifstream file(nama + "/" + fileTujuan + ".txt");
+    string line;
+    while (getline(file, line)) {
+        cout << line << endl;
+    }
+    file.close();
+}
+
+// <------------------ End Fungsi Fungsi Utama ------------------>
+
