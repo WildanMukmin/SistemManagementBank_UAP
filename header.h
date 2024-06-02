@@ -155,3 +155,50 @@ template <class T> void warna(T kata){
 
 //------------tempat tempat void tampilan------------//
 
+// tampilan untuk form login
+void formLogin(){
+    createLineX(10, 60, 10);
+    createLineX(10, 60, 30);
+    createLineY(10, 30, 10);
+    createLineY(10, 30, 60);
+
+    linexy(12,12); cout << "Masukan Nama Anda : ";
+    linexy(12,14); cout << "Masukan PIN Anda : ";
+}
+
+// box opsi login
+void boxOpsiLogin()
+{
+	createText(54, 1, "                     ,---.           ,---.");
+	createText(54, 2, "                    / /'`.'..''''--./,''\\ \\");
+	createText(54, 3, "                    \\ \\    _       _    / /");
+	createText(54, 4, "                     `.'  ' __   __ `  `,'");
+	createText(54, 5, "                      /    /_O)_(_O\\    \\");
+	createText(54, 6, "                      |  .-'  ___  `-.  |");
+	createText(54, 7, "                   .--|       \\_/       |--.");
+	createText(54, 8, "                 ,'    `   \\   |   /   /    `.");
+	createText(54, 9, "                /       `.  `--^--'  ,'       `");
+	createText(54, 10, "             .-''''..    ` ...___...'      .-''''-.");
+	createText(54, 11, ".-----------/         `------------------/         `--------------.");
+	createText(54, 12, "| .---------`         /------------------`         /------------. |");
+	createText(54, 13, "| |          `.`..`..'                    `.'...'.'             | |");
+	createText(54, 14, "| |                        B E R A N D A                        | |");
+	createText(54, 15, "| |                                                             | |");
+	createText(54, 16, "| |                                                             | |");
+	createText(54, 17, "| |     1. LOGIN                                                | |");
+	createText(54, 18, "| |     2. BUAT AKUN                                            | |");
+	createText(54, 19, "| |     3. KELUAR                                               | |");
+	createText(54, 20, "| |                                                             | |");
+	createText(54, 21, "| |                        JAWABAN ANDA :                       | |");
+	createText(54, 22, "| |                                                             | |");
+	createText(54, 23, "| |                                                             | |");
+	createText(54, 24, "| |_____________________________________________________________| |");
+	createText(54, 25, "|_________________________________________________________________|");
+	createText(54, 26, "                   )__________|__|__________(");
+	createText(54, 27, "                  |            ||            |");
+	createText(54, 28, "                  |____________||____________|");
+	createText(54, 29, "                    ),-----.(      ),-----.(");
+	createText(54, 30, "                  ,'   ..   `     '    ..   `.");
+	createText(54, 31, "                 /            )  (           '");
+	createText(54, 32, "                 `..........'    `...........'");
+}
