@@ -147,7 +147,6 @@ void createText(int x, int y, string text, int tahan = 0)
 	}
 }
 
-
 // singkatan cout
 template <class T> void warna(T kata){
 	cout << kata << endl;
