@@ -72,7 +72,7 @@ void linexy(int x, int y)
 // loading animation
 void loading(int x, int y)
 {
-	char load[] = "L O A D I N G";
+	char load[] = {'L', ' ', 'O', ' ', 'A', ' ', 'D', ' ', 'I', ' ', 'N', ' ', 'G', '\0'};
 
 	linexy(x, y);
 	for (int i = 0; i <= 12; i++)

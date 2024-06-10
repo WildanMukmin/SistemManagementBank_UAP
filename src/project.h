@@ -17,6 +17,13 @@ string getStatusRiwayatTransaksiKeluar(string nama);
 void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal);
 void menuRiwayatTransaksi(string nama);
 void readFile(string nama, string fileTujuan);
+vector <string> readFileVersiReturn(string nama, string fileTujuan);
+void mergeSort(vector<string>& arr, int left, int right);
+void merge(vector<string>& arr, int left, int mid, int right);
+int extractNominal(const string& str);
+vector <string> readFileVersiReturn(string nama, string fileTujuan);
+deque <string> sortByDuitAscending(vector <string> arr);
+deque <string> sortByDuitDescending(vector <string> arr);
 class Nasabah;
 
 // <------------------ End Prototype ------------------>
@@ -286,6 +293,92 @@ void readFile(string nama, string fileTujuan){
         cout << line << endl;
     }
     file.close();
+}
+
+int extractNominal(const string& str) {
+    size_t pos = str.rfind("sebanyak ");
+    if (pos != string::npos) {
+        return stoi(str.substr(pos + 9));
+    }
+    return 0;
+}
+
+// Fungsi untuk menggabungkan dua subvektor yang telah diurutkan
+void merge(vector<string>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    vector<string> L(n1);
+    vector<string> R(n2);
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int i = 0; i < n2; i++)
+        R[i] = arr[mid + 1 + i];
+
+    int i = 0, j = 0, k = left;
+
+    while (i < n1 && j < n2) {
+        if (extractNominal(L[i]) <= extractNominal(R[j])) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+// Fungsi rekursif untuk melakukan merge sort
+void mergeSort(vector<string>& arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+
+        merge(arr, left, mid, right);
+    }
+}
+
+vector <string> readFileVersiReturn(string nama, string fileTujuan){
+    ifstream file(nama + "/" + fileTujuan + ".txt");
+    vector <string> result;
+    string line;
+    while (getline(file, line)) {
+        result.push_back(line);
+    }
+    file.close();
+    return result;
+}
+
+deque <string> sortByDuitAscending(vector <string> arr){
+    deque <string> result;
+    mergeSort(arr, 0, arr.size() - 1);
+    // Menampilkan hasil urutan
+    for (const auto& i : arr) {result.push_back(i);}
+    return result;
+}
+
+deque <string> sortByDuitDescending(vector <string> arr){
+    deque <string> result;
+    mergeSort(arr, 0, arr.size() - 1);
+    // Menampilkan hasil urutan
+    for (const auto& i : arr) {result.push_front(i);}
+    return result;
 }
 
 // <------------------ End Fungsi Fungsi Utama ------------------>

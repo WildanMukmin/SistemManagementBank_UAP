@@ -1,2 +1,6 @@
 Mengirim Uang ke : riskur sebanyak 5000
+Mengirim Uang ke : riskur sebanyak 7000
+Mengirim Uang ke : riskur sebanyak 70000
 Mengirim Uang ke : mub sebanyak 5000
+Mengirim Uang ke : mub sebanyak 10000
+Mengirim Uang ke : mub sebanyak 70000

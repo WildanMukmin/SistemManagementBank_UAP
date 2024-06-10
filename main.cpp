@@ -2,6 +2,7 @@
 
 int main(){
     string nama, pin;
+    char greeting [] = "Masukan Pilihan Anda";
 
     cout << "selamat datang" << endl;
     getch();
@@ -58,7 +59,7 @@ int main(){
 
 
     PILIHANOPSI:
-    cout << "Masukan Pilihan Anda" << endl;
+    cout << greeting << endl;
     cout << "1. Info Akun" << endl;
     cout << "2. Transfer" << endl;
     cout << "3. Riwayat Transaksi" << endl;
