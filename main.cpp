@@ -3,8 +3,8 @@
 int main(){
     string nama, pin;
     char greeting [] = "Masukan Pilihan Anda";
-
-    cout << "selamat datang" << endl;
+    system("cls");
+    selamatdatang();
     getch();
     GATEWAY:
     system("cls");
