@@ -28,7 +28,7 @@ class Nasabah{
         
         ofstream saldo;
         saldo.open("data/" + nama + "/saldo.txt", ios::app);
-        saldo << 0;
+        saldo << 100000;
         saldo.close();
         
         ofstream riwayatTransaksiMasuk;

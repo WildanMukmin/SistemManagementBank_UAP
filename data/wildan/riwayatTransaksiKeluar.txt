@@ -1,3 +1,5 @@
 Mengirim Uang ke : mub sebanyak 4000
 Mengirim Uang ke : mub sebanyak 10000
 Mengirim Uang ke : mub sebanyak 5000
+Mengirim Uang ke : dea sebanyak 200000
+Mengirim Uang ke : udin sebanyak 200000
