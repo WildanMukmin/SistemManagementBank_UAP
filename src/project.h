@@ -155,7 +155,7 @@ void transfer(string nama, deque<string> listPengguna){
     linexy (14, 6);cin >> konfirTransfer;
     if(konfirTransfer == 'y' || konfirTransfer == 'Y'){
         string pin;
-        linexy(24,8); cin >> pin;
+        linexy(25,8); cin >> pin;
         system("cls");
         if(login(nama, pin)){
             system("cls");

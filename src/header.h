@@ -260,15 +260,18 @@ void notifikasiAkunBerhasil(string nama) {
 
 // Fungsi Menampilkan Detail Informasi Akun
 void infoAkun(string nama) {
+    int y = 5;
     cout << CYAN;
-    cout << "    _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._" << endl;
-    cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
-    cout << " ( (                                                         ) )" << endl;
-    cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "              ) )" << endl;
-    cout << "  ) )                                                       ( (" << endl;
-    cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
-    cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
+    createText(1,y,  "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._" );y++;
+    createText(1,y,  " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." );y++;
+    createText(1,y,  "( (                                                         ) )" );y++;
+    createText(1,y,  " ) )          Nomor Rekening Anda :                        ( (" );y++;
+    createText(1,y,  "( (           Saldo Anda          :                         ) )" );y++;
+    createText(1,y,  " ) )                                                       ( (" );y++;
+    createText(1,y,  "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" );y++;
+    createText(1,y,  "`._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" );y++;
+    linexy(37, 8); cout << getNoRek(nama);
+    linexy(37, 9); cout << getSaldo(nama);
     cout << RESET;
 }
 
