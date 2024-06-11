@@ -10,7 +10,9 @@ class Nasabah{
 
     public:
     Nasabah(string nama, string pin, string noRek) : nama(nama), pin(pin), noRek(noRek) {
-        string buatFile = "mkdir C:\\Users\\Hp\\Desktop\\SistemManagementBank_UAP\\data\\" + nama;
+        char cwd[PATH_MAX];
+        _getcwd(cwd, sizeof(cwd));
+        string buatFile = "mkdir "+ string(cwd) + "\\data\\" + nama;
         system(buatFile.c_str());
 
         ofstream akun;
@@ -69,6 +71,7 @@ void createAkun() {
     updateListPengguna.close();
 
     notifikasiAkunBerhasil(nama);
+    PlaySound(TEXT("music/suksesTransfer.wav"), NULL, SND_SYNC);
     getch();
 }
 
