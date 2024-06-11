@@ -1,1 +1,3 @@
-Belum Ada Transaksi
+Uang masuk dari : mub sebanyak 12000
+Uang masuk dari : mub sebanyak 11000
+Uang masuk dari : mub sebanyak 1000

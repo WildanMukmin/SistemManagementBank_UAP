@@ -140,10 +140,11 @@ void transfer(string nama, deque<string> listPengguna){
       TRANSFER:
     system("cls");
     formTransfer();
+    linexy (34, 8); cout << getNoRek(nama);
     string noRekTujuan;
-    linexy (35, 10); cin >> noRekTujuan;
+    linexy (34, 10); cin >> noRekTujuan;
     long long unsigned int nominalTransfer;
-    linexy (35, 12);cin >> nominalTransfer;
+    linexy (34, 12);cin >> nominalTransfer;
     string namaTujuan;
     system("cls");
 
@@ -158,6 +159,7 @@ void transfer(string nama, deque<string> listPengguna){
         system("cls");
         if(login(nama, pin)){
             strukPembayaran(nama, namaTujuan, nominalTransfer);
+            getch();
             system("cls");
         }else{
             salahPinTransfer();
@@ -261,7 +263,7 @@ void menuRiwayatTransaksi(string nama){
     system("cls");
     formRiwayatTransaksi();
     char pilihanMenuRiwayatTransaksi;
-    linexy(29,17);
+    linexy(29,19);
     cin >> pilihanMenuRiwayatTransaksi;
     //(pilihanMenuRiwayatTransaksi == '1') ? readFile(nama, "riwayatTransaksiMasuk") : readFile(nama, "riwayatTransaksiKeluar");
     //linexy(16,12);
@@ -275,7 +277,7 @@ void menuRiwayatTransaksi(string nama){
             y++;
         }
         char pilihSort;
-        linexy(17,10); cin>>pilihSort;
+        linexy(22,10); cin>>pilihSort;
         if(pilihSort == '1') {
             y = 12;
             formRiwayatTransaksiMasuk();
@@ -298,6 +300,7 @@ void menuRiwayatTransaksi(string nama){
                 y++;
             }
         }
+        getch();
     }else{
         formRiwayatTransaksiKeluar();
         vector<string>listRiwayatTransaksi = readFileVersiReturn(nama, "riwayatTransaksiKeluar");
@@ -307,7 +310,7 @@ void menuRiwayatTransaksi(string nama){
             y++;
         }
         char pilihSort;
-        linexy(17,10); cin>>pilihSort;
+        linexy(22,10); cin>>pilihSort;
         if(pilihSort == '1') {
             y = 12;
             formRiwayatTransaksiKeluar();
@@ -330,6 +333,7 @@ void menuRiwayatTransaksi(string nama){
                 y++;
             }
         }
+        getch();
 
     }
 }

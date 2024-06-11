@@ -74,6 +74,7 @@ void notifikasiAkunBerhasil(string nama);
 void infoAkun(string nama);
 void strukPembayaran(string nama, string namaTujuan, long long unsigned int nominalTransfer);
 void formLogin();
+void salahPinLogin();
 void formCreateAkun();
 void boxBeranda();
 void formRiwayatTransaksi();
@@ -301,7 +302,7 @@ void infoAkun(string nama) {
     cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
     cout << " ( (                                                         ) )" << endl;
     cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "             ) )" << endl;
+    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "                       ) )" << endl;
     cout << "  ) )                                                       ( (" << endl;
     cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
     cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
@@ -337,7 +338,7 @@ void formLogin()
     createText(1, 3, "( (                                                                         ) )");
     createText(1, 4, " ) )                                                                       ( (");
     createText(1, 5, "( (                                                                         ) )");
-    createText(1, 6, " ) )                               Log In!                                 ( (");
+    createText(1, 6, " ) )                               Log In                                  ( (");
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )                                                                       ( (");
     createText(1, 9, "( (                                                                         ) )");
@@ -358,6 +359,34 @@ void formLogin()
     createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
 }
 
+// tampilan untuk form salah pin login
+void salahPinLogin()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                               Log In                                  ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )                                                                       ( (");
+    createText(1, 9, "( (            Proses login Anda gagal, karena Nama atau PIN yang           ) )");
+    createText(1, 10, " ) )           Anda masukan salah.                                         ( (");
+    createText(1, 11, "( (            Silakan lakukan log in ulang atau buat akun.                 ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (            1. Log in                                                    ) )");
+    createText(1, 14, " ) )           2. Buat Akun                                                ( (");
+    createText(1, 15, "( (            Pilih Opsi :                                                 ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
 
 //tampilan beranda
 void boxBeranda()
@@ -365,18 +394,18 @@ void boxBeranda()
     createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
-    createText(1, 4, " ) )        __  __   ____              _    _                              ( (");
-    createText(1, 5, "( (        |  \\/  | | __ )  __ _ _ __ | | _(_)_ __   __ _                   ) )");
-    createText(1, 6, " ) )       | |\\/| | |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` |                 ( (");
-    createText(1, 7, "( (        | |  | | | |_) | (_| | | | |   <| | | | | (_| |                  ) )");
-    createText(1, 8, " ) )       |_|  |_| |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |                 ( (");
-    createText(1, 9, "( (                                                 |___/                   ) )");
+    createText(1, 4, " ) )             __  __   ____              _    _                         ( (");
+    createText(1, 5, "( (             |  \\/  | | __ )  __ _ _ __ | | _(_)_ __   __ _              ) )");
+    createText(1, 6, " ) )            | |\\/| | |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` |            ( (");
+    createText(1, 7, "( (             | |  | | | |_) | (_| | | | |   <| | | | | (_| |             ) )");
+    createText(1, 8, " ) )            |_|  |_| |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |            ( (");
+    createText(1, 9, "( (                                                      |___/              ) )");
     createText(1, 10, " ) )                                                                       ( (");
     createText(1, 11, "( (                                                                         ) )");
-    createText(1, 12, " ) )       1. Log In                                                       ( (");
-    createText(1, 13, "( (        2. Buat Akun                                                     ) )");
-    createText(1, 14, " ) )       3. Keluar                                                       ( (");
-    createText(1, 15, "( (        Pilih Opsi:                                                      ) )");
+    createText(1, 12, " ) )            1. Log In                                                  ( (");
+    createText(1, 13, "( (             2. Buat Akun                                                ) )");
+    createText(1, 14, " ) )            3. Keluar                                                  ( (");
+    createText(1, 15, "( (             Pilih Opsi :                                                ) )");
     createText(1, 16, " ) )                                                                       ( (");
     createText(1, 17, "( (                                                                         ) )");
     createText(1, 18, " ) )                                                                       ( (");
@@ -407,9 +436,9 @@ void formRiwayatTransaksi()
     createText(1, 14, " ) )                                                                       ( (");
     createText(1, 15, "( (            2. Transaksi Keluar                                          ) )");
     createText(1, 16, " ) )                                                                       ( (");
-    createText(1, 17, "( (            Pilih Opsi :                                                 ) )");
+    createText(1, 17, "( (            3. Kembali                                                   ) )");
     createText(1, 18, " ) )                                                                       ( (");
-    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 19, "( (            Pilih Opsi :                                                 ) )");
     createText(1, 20, " ) )                                                                       ( (");
     createText(1, 21, "( (                                                                         ) )");
     createText(1, 22, " ) )                                                                       ( (");
@@ -429,7 +458,7 @@ void formRiwayatTransaksiMasuk()
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
     createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
-    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 10, " ) )               :                                                       ( (");
     createText(1, 11, "( (                                                                         ) )");
     createText(1, 12, " ) )                                                                       ( (");
     createText(1, 13, "( (                                                                         ) )");
@@ -457,7 +486,7 @@ void formRiwayatTransaksiKeluar()
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
     createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
-    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 10, " ) )               :                                                       ( (");
     createText(1, 11, "( (                                                                         ) )");
     createText(1, 12, " ) )                                                                       ( (");
     createText(1, 13, "( (                                                                         ) )");
@@ -483,7 +512,7 @@ void formTransfer()
     createText(1, 5, "( (                                                                         ) )");
     createText(1, 6, " ) )                                M-Transfer                             ( (");
     createText(1, 7, "( (                                                                         ) )");
-    createText(1, 8, " ) )           Dari Rekening   :                                          ( (");
+    createText(1, 8, " ) )           Dari Rekening   :                                           ( (");
     createText(1, 9, "( (                                                                         ) )");
     createText(1, 10, " ) )           Rekening Tujuan :                                           ( (");
     createText(1, 11, "( (                                                                         ) )");

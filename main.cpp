@@ -10,7 +10,7 @@ int main(){
     system("cls");
     boxBeranda();
     
-    linexy(25,15);
+    linexy(30,15);
     char pilihan;cin >> pilihan;
     if(pilihan == '1'){
         FORM:
@@ -22,20 +22,11 @@ int main(){
         if(valid){
             goto HOME;
         }else{
-            cout << endl;
-            cout << "Nama atau PIN salah!" << endl;
-            cout << "Mohon masukan dengan benar!" << endl;
-
-            cout << endl;
-            cout << endl;
-            PERINTAHSALAH:
-            cout << "Coba lagi atau buat akun?"<<endl;
-            cout << "1. untuk coba lagi"<<endl;
-            cout << "2. untuk buat akun"<<endl;
-            char pilihan2; cin >> pilihan2;
+            salahPinLogin();
+            char pilihan2; 
+            linexy(29, 15); cin >> pilihan2;
             if(pilihan2 == '1') goto FORM;
             else if(pilihan2 == '2') goto FORMCREATEAKUN;
-            else goto PERINTAHSALAH;
             
         }
     }else if(pilihan == '2'){
@@ -61,6 +52,7 @@ int main(){
 
 
     PILIHANOPSI:
+        system("cls") ;
     cout << greeting << endl;
     cout << "1. Info Akun" << endl;
     cout << "2. Transfer" << endl;
@@ -69,7 +61,9 @@ int main(){
     char pilihanHome; cin >> pilihanHome;
 
     if(pilihanHome == '1') {
-        infoAkun(nama); 
+        system("cls") ;
+        infoAkun(nama);
+        getch();
         goto PILIHANOPSI;
     }
     else if(pilihanHome == '2') {

@@ -1,1 +1,3 @@
-Belum Ada Transaksi
+Mengirim Uang ke : wildan sebanyak 12000
+Mengirim Uang ke : wildan sebanyak 11000
+Mengirim Uang ke : wildan sebanyak 1000
