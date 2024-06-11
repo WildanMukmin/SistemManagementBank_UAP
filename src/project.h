@@ -14,28 +14,28 @@ class Nasabah{
         system(buatFile.c_str());
 
         ofstream akun;
-        akun.open(nama + "/userAkun.txt", ios::app);
+        akun.open("data/" + nama + "/userAkun.txt", ios::app);
         akun << nama;
         akun << pin;
         akun.close();
 
         ofstream nomorRekening;
-        nomorRekening.open(nama + "/nomorRekening.txt", ios::app);
+        nomorRekening.open("data/" + nama + "/nomorRekening.txt", ios::app);
         nomorRekening << noRek;
         nomorRekening.close();
         
         ofstream saldo;
-        saldo.open(nama + "/saldo.txt", ios::app);
+        saldo.open("data/" + nama + "/saldo.txt", ios::app);
         saldo << 0;
         saldo.close();
         
         ofstream riwayatTransaksiMasuk;
-        riwayatTransaksiMasuk.open(nama + "/riwayatTransaksiMasuk.txt", ios::app);
+        riwayatTransaksiMasuk.open("data/" + nama + "/riwayatTransaksiMasuk.txt", ios::app);
         riwayatTransaksiMasuk << "Belum Ada Transaksi";
         riwayatTransaksiMasuk.close();
         
         ofstream riwayatTransaksiKeluar;
-        riwayatTransaksiKeluar.open(nama + "/riwayatTransaksiKeluar.txt", ios::app);
+        riwayatTransaksiKeluar.open("data/" + nama + "/riwayatTransaksiKeluar.txt", ios::app);
         riwayatTransaksiKeluar << "Belum Ada Transaksi";
         riwayatTransaksiKeluar.close();
 
@@ -77,7 +77,7 @@ bool login(string nama, string pin){
 	string output;
 
 	ifstream verifikasi;
-	verifikasi.open(nama + "/userAkun.txt"); // sesuain dengan lokasi
+	verifikasi.open("data/" + nama + "/userAkun.txt"); // sesuain dengan lokasi
     verifikasi >> output;
     if (output == nama + pin) return true;
     verifikasi.close();
@@ -116,7 +116,7 @@ string getNoRek(string nama){
 	string output;
 
 	ifstream verifikasi;
-	verifikasi.open(nama + "/nomorRekening.txt"); // sesuain dengan lokasi
+	verifikasi.open("data/" + nama + "/nomorRekening.txt"); // sesuain dengan lokasi
     verifikasi >> output;
     verifikasi.close();
     
@@ -128,7 +128,7 @@ long long unsigned int getSaldo(string nama){
 	string output;
 
 	ifstream verifikasi;
-	verifikasi.open(nama + "/saldo.txt"); // sesuain dengan lokasi
+	verifikasi.open("data/" + nama + "/saldo.txt"); // sesuain dengan lokasi
     verifikasi >> output;
     verifikasi.close();
     
@@ -164,7 +164,7 @@ void transfer(string nama, deque<string> listPengguna){
         string output;
         
         ifstream verifikasi;
-        verifikasi.open(i + "/nomorRekening.txt"); // sesuain dengan lokasi
+        verifikasi.open("data/" + i + "/nomorRekening.txt"); // sesuain dengan lokasi
         verifikasi >> output;
         verifikasi.close();
 
@@ -191,7 +191,7 @@ void transfer(string nama, deque<string> listPengguna){
 // Fungsi untuk mengupdate saldo
 void updateSaldo(string nama, long long unsigned int saldoTerbaru){
     ofstream saldo;
-    saldo.open(nama + "/saldo.txt");
+    saldo.open("data/" + nama + "/saldo.txt");
     saldo << saldoTerbaru;
     saldo.close();
 }
@@ -200,7 +200,7 @@ void updateSaldo(string nama, long long unsigned int saldoTerbaru){
 void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nominal){
     ofstream updateRTM;
     
-    (getStatusRiwayatTransaksiMasuk(nama) == "BelumAdaTransaksi") ? updateRTM.open(nama + "/riwayatTransaksiMasuk.txt") : updateRTM.open(nama + "/riwayatTransaksiMasuk.txt", ios::app);
+    (getStatusRiwayatTransaksiMasuk(nama) == "BelumAdaTransaksi") ? updateRTM.open("data/" + nama + "/riwayatTransaksiMasuk.txt") : updateRTM.open("data/" + nama + "/riwayatTransaksiMasuk.txt", ios::app);
     updateRTM << "Uang masuk dari : " << namaPengirim << " sebanyak " << nominal << endl;
     updateRTM.close();
 }
@@ -209,7 +209,7 @@ void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nomina
 void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal){
     ofstream updateRTK;
 
-    (getStatusRiwayatTransaksiKeluar(nama) == "BelumAdaTransaksi") ? updateRTK.open(nama + "/riwayatTransaksiKeluar.txt") : updateRTK.open(nama + "/riwayatTransaksiKeluar.txt", ios::app);
+    (getStatusRiwayatTransaksiKeluar(nama) == "BelumAdaTransaksi") ? updateRTK.open("data/" + nama + "/riwayatTransaksiKeluar.txt") : updateRTK.open("data/" + nama + "/riwayatTransaksiKeluar.txt", ios::app);
     updateRTK << "Mengirim Uang ke : " << namaPenerima << " sebanyak " << nominal << endl;
     updateRTK.close();
 }
@@ -219,7 +219,7 @@ string getStatusRiwayatTransaksiMasuk(string nama){
     string output, temp;
     
 	ifstream verifikasi;
-	verifikasi.open(nama + "/riwayatTransaksiMasuk.txt"); // sesuain dengan lokasi
+	verifikasi.open("data/" + nama + "/riwayatTransaksiMasuk.txt"); // sesuain dengan lokasi
     while(!verifikasi.eof()){
     verifikasi >> temp;
     output += temp;
@@ -234,7 +234,7 @@ string getStatusRiwayatTransaksiKeluar(string nama){
     string output, temp;
     
 	ifstream verifikasi;
-	verifikasi.open(nama + "/riwayatTransaksiKeluar.txt"); // sesuain dengan lokasi
+	verifikasi.open("data/" + nama + "/riwayatTransaksiKeluar.txt"); // sesuain dengan lokasi
     while(!verifikasi.eof()){
     verifikasi >> temp;
     output += temp;
@@ -255,7 +255,7 @@ void menuRiwayatTransaksi(string nama){
 }
 
 void readFile(string nama, string fileTujuan){
-    ifstream file(nama + "/" + fileTujuan + ".txt");
+    ifstream file("data/" + nama + "/" + fileTujuan + ".txt");
     string line;
     while (getline(file, line)) {
         cout << line << endl;
@@ -323,7 +323,7 @@ void mergeSort(vector<string>& arr, int left, int right) {
 }
 
 vector <string> readFileVersiReturn(string nama, string fileTujuan){
-    ifstream file(nama + "/" + fileTujuan + ".txt");
+    ifstream file("data/" + nama + "/" + fileTujuan + ".txt");
     vector <string> result;
     string line;
     while (getline(file, line)) {
