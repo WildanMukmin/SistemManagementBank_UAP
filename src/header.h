@@ -74,8 +74,10 @@ void notifikasiAkunBerhasil(string nama);
 void infoAkun(string nama);
 void strukPembayaran(string nama, string namaTujuan, long long unsigned int nominalTransfer);
 void formLogin();
+void salahPinLogin();
 void formCreateAkun();
 void boxBeranda();
+void menuHome();
 void formRiwayatTransaksi();
 void formRiwayatTransaksiMasuk();
 void formRiwayatTransaksiKeluar();
@@ -211,44 +213,6 @@ template <class T> void warna(T kata){
 
 // tampilan untuk form login
 
-// box opsi login
-void boxOpsiLogin()
-{
-	cout << CYAN;
-	createText(54, 1, "                     ,---.           ,---.");
-	createText(54, 2, "                    / /'`.'..''''--./,''\\ \\");
-	createText(54, 3, "                    \\ \\    _       _    / /");
-	createText(54, 4, "                     `.'  ' __   __ `  `,'");
-	createText(54, 5, "                      /    /_O)_(_O\\    \\");
-	createText(54, 6, "                      |  .-'  ___  `-.  |");
-	createText(54, 7, "                   .--|       \\_/       |--.");
-	createText(54, 8, "                 ,'    `   \\   |   /   /    `.");
-	createText(54, 9, "                /       `.  `--^--'  ,'       `");
-	createText(54, 10, "             .-''''..    ` ...___...'      .-''''-.");
-	createText(54, 11, ".-----------/         `------------------/         `--------------.");
-	createText(54, 12, "| .---------`         /------------------`         /------------. |");
-	createText(54, 13, "| |          `.`..`..'                    `.'...'.'             | |");
-	createText(54, 14, "| |                        B E R A N D A                        | |");
-	createText(54, 15, "| |                                                             | |");
-	createText(54, 16, "| |                                                             | |");
-	createText(54, 17, "| |     1. LOGIN                                                | |");
-	createText(54, 18, "| |     2. BUAT AKUN                                            | |");
-	createText(54, 19, "| |     3. KELUAR                                               | |");
-	createText(54, 20, "| |                                                             | |");
-	createText(54, 21, "| |                        JAWABAN ANDA :                       | |");
-	createText(54, 22, "| |                                                             | |");
-	createText(54, 23, "| |                                                             | |");
-	createText(54, 24, "| |_____________________________________________________________| |");
-	createText(54, 25, "|_________________________________________________________________|");
-	createText(54, 26, "                   )__________|__|__________(");
-	createText(54, 27, "                  |            ||            |");
-	createText(54, 28, "                  |____________||____________|");
-	createText(54, 29, "                    ),-----.(      ),-----.(");
-	createText(54, 30, "                  ,'   ..   `     '    ..   `.");
-	createText(54, 31, "                 /            )  (           '");
-	createText(54, 32, "                 `..........'    `...........'");
-	cout << RESET;
-}
 
 // tampilan selamat datang
 void selamatdatang()
@@ -301,7 +265,7 @@ void infoAkun(string nama) {
     cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
     cout << " ( (                                                         ) )" << endl;
     cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "             ) )" << endl;
+    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "                       ) )" << endl;
     cout << "  ) )                                                       ( (" << endl;
     cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
     cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
@@ -332,12 +296,13 @@ void strukPembayaran(string nama, string namaTujuan, long long unsigned int nomi
 //tampilan login
 void formLogin()
 {
+	cout << CYAN;
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
     createText(1, 4, " ) )                                                                       ( (");
     createText(1, 5, "( (                                                                         ) )");
-    createText(1, 6, " ) )                               Log In!                                 ( (");
+    createText(1, 6, " ) )                               Log In                                  ( (");
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )                                                                       ( (");
     createText(1, 9, "( (                                                                         ) )");
@@ -356,27 +321,28 @@ void formLogin()
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
     createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+	cout << RESET;
 }
 
-
-//tampilan beranda
-void boxBeranda()
+// tampilan untuk form salah pin login
+void salahPinLogin()
 {
-    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+	cout << CYAN;
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
-    createText(1, 4, " ) )        __  __   ____              _    _                              ( (");
-    createText(1, 5, "( (        |  \\/  | | __ )  __ _ _ __ | | _(_)_ __   __ _                   ) )");
-    createText(1, 6, " ) )       | |\\/| | |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` |                 ( (");
-    createText(1, 7, "( (        | |  | | | |_) | (_| | | | |   <| | | | | (_| |                  ) )");
-    createText(1, 8, " ) )       |_|  |_| |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |                 ( (");
-    createText(1, 9, "( (                                                 |___/                   ) )");
-    createText(1, 10, " ) )                                                                       ( (");
-    createText(1, 11, "( (                                                                         ) )");
-    createText(1, 12, " ) )       1. Log In                                                       ( (");
-    createText(1, 13, "( (        2. Buat Akun                                                     ) )");
-    createText(1, 14, " ) )       3. Keluar                                                       ( (");
-    createText(1, 15, "( (        Pilih Opsi:                                                      ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                               Log In                                  ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )                                                                       ( (");
+    createText(1, 9, "( (            Proses login Anda gagal, karena Nama atau PIN yang           ) )");
+    createText(1, 10, " ) )           Anda masukan salah.                                         ( (");
+    createText(1, 11, "( (            Silakan lakukan log in ulang atau buat akun.                 ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (            1. Log in                                                    ) )");
+    createText(1, 14, " ) )           2. Buat Akun                                                ( (");
+    createText(1, 15, "( (            Pilih Opsi :                                                 ) )");
     createText(1, 16, " ) )                                                                       ( (");
     createText(1, 17, "( (                                                                         ) )");
     createText(1, 18, " ) )                                                                       ( (");
@@ -386,11 +352,75 @@ void boxBeranda()
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
     createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+	cout << RESET;
+}
+
+//tampilan beranda
+void boxBeranda()
+{
+	cout << CYAN;
+    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )             __  __   ____              _    _                         ( (");
+    createText(1, 5, "( (             |  \\/  | | __ )  __ _ _ __ | | _(_)_ __   __ _              ) )");
+    createText(1, 6, " ) )            | |\\/| | |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` |            ( (");
+    createText(1, 7, "( (             | |  | | | |_) | (_| | | | |   <| | | | | (_| |             ) )");
+    createText(1, 8, " ) )            |_|  |_| |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |            ( (");
+    createText(1, 9, "( (                                                      |___/              ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )            1. Log In                                                  ( (");
+    createText(1, 13, "( (             2. Buat Akun                                                ) )");
+    createText(1, 14, " ) )            3. Keluar                                                  ( (");
+    createText(1, 15, "( (             Pilih Opsi :                                                ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+	cout << RESET;
+}
+
+// tampilan menu home
+void menuHome()
+{
+    cout << CYAN;
+    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                      __  __                                            ( (");
+    createText(1, 5, "( (                      |  \\/  | ___ _ __  _   _                            ) )");
+    createText(1, 6, " ) )                     | |\\/| |/ _ \\ '_ \\| | | |                          ( (");
+    createText(1, 7, "( (                      | |  | |  __/ | | | |_| |                           ) )");
+    createText(1, 8, " ) )                     |_|  |_|\\___|_| |_|\\__,_|                          ( (");
+    createText(1, 9, "( (                                                                         ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )            1. Info Akun                                               ( (");
+    createText(1, 13, "( (             2. Transfer                                                 ) )");
+    createText(1, 14, " ) )            3. Riwayat Transaksi                                       ( (");
+    createText(1, 15, "( (             4. Log Out                                                  ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+    cout << RESET;
 }
 
 //tampilan riwayat transaksi
 void formRiwayatTransaksi()
 {
+	cout << CYAN;
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
@@ -407,19 +437,21 @@ void formRiwayatTransaksi()
     createText(1, 14, " ) )                                                                       ( (");
     createText(1, 15, "( (            2. Transaksi Keluar                                          ) )");
     createText(1, 16, " ) )                                                                       ( (");
-    createText(1, 17, "( (            Pilih Opsi :                                                 ) )");
+    createText(1, 17, "( (            3. Kembali                                                   ) )");
     createText(1, 18, " ) )                                                                       ( (");
-    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 19, "( (            Pilih Opsi :                                                 ) )");
     createText(1, 20, " ) )                                                                       ( (");
     createText(1, 21, "( (                                                                         ) )");
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
     createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+	cout << RESET;
 }
 
 //tampilan urutan transaksi masuk
 void formRiwayatTransaksiMasuk()
 {
+	cout << CYAN;
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
@@ -429,7 +461,7 @@ void formRiwayatTransaksiMasuk()
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
     createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
-    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 10, " ) )               :                                                       ( (");
     createText(1, 11, "( (                                                                         ) )");
     createText(1, 12, " ) )                                                                       ( (");
     createText(1, 13, "( (                                                                         ) )");
@@ -443,11 +475,13 @@ void formRiwayatTransaksiMasuk()
     createText(1, 21, "( (                                                                         ) )");
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (                                                                         ) )");
+	cout << RESET;
 }
 
 //tampilan urutan transaksi keluar
 void formRiwayatTransaksiKeluar()
 {
+	cout << CYAN;
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
@@ -457,7 +491,7 @@ void formRiwayatTransaksiKeluar()
     createText(1, 7, "( (                                                                         ) )");
     createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
     createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
-    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 10, " ) )               :                                                       ( (");
     createText(1, 11, "( (                                                                         ) )");
     createText(1, 12, " ) )                                                                       ( (");
     createText(1, 13, "( (                                                                         ) )");
@@ -471,11 +505,13 @@ void formRiwayatTransaksiKeluar()
     createText(1, 21, "( (                                                                         ) )");
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (                                                                         ) )");
+	cout << RESET;
 }
 
 //tampilan awal transfer
 void formTransfer()
 {
+	cout << CYAN;
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
     createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
     createText(1, 3, "( (                                                                         ) )");
@@ -483,7 +519,7 @@ void formTransfer()
     createText(1, 5, "( (                                                                         ) )");
     createText(1, 6, " ) )                                M-Transfer                             ( (");
     createText(1, 7, "( (                                                                         ) )");
-    createText(1, 8, " ) )           Dari Rekening   :                                          ( (");
+    createText(1, 8, " ) )           Dari Rekening   :                                           ( (");
     createText(1, 9, "( (                                                                         ) )");
     createText(1, 10, " ) )           Rekening Tujuan :                                           ( (");
     createText(1, 11, "( (                                                                         ) )");
@@ -500,11 +536,13 @@ void formTransfer()
     createText(1, 22, " ) )                                                                       ( (");
     createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
     createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+	cout << RESET;
 }
 
 //tampilan awal transfer
 void konfirTransfer()
 {
+	cout << CYAN;
     createText(1, 1, " __| |____________________________________________| |__");
     createText(1, 2, "(__   ____________________________________________   __)");
     createText(1, 3, "   | |                                            | |");
@@ -516,11 +554,13 @@ void konfirTransfer()
     createText(1, 9, " __| |____________________________________________| |__");
     createText(1, 10, "(__   ____________________________________________   __)");
     createText(1, 11, "   | |                                            | |");
+	cout << RESET;
 }
 
 //tampilan awal transfer
 void salahPinTransfer()
 {
+	cout << CYAN;
     createText(1, 1, " __| |____________________________________________| |__");
     createText(1, 2, "(__   ____________________________________________   __)");
     createText(1, 3, "   | |                                            | |");
@@ -532,10 +572,12 @@ void salahPinTransfer()
     createText(1, 9, " __| |____________________________________________| |__");
     createText(1, 10, "(__   ____________________________________________   __)");
     createText(1, 11, "   | |                                            | |");
+	cout << RESET;
 }
 //tampilan awal transfer
 void batalTransfer()
 {
+	cout << CYAN;
     createText(1, 1, " __| |____________________________________________| |__");
     createText(1, 2, "(__   ____________________________________________   __)");
     createText(1, 3, "   | |                                            | |");
@@ -547,4 +589,5 @@ void batalTransfer()
     createText(1, 9, " __| |____________________________________________| |__");
     createText(1, 10, "(__   ____________________________________________   __)");
     createText(1, 11, "   | |                                            | |");
+	cout << RESET;
 }
