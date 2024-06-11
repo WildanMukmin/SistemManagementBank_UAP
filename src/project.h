@@ -161,10 +161,12 @@ void transfer(string nama, deque<string> listPengguna){
             system("cls");
         }else{
             salahPinTransfer();
+            getch();
             goto ULANGIVERIFIKASIPIN;
         }
     }else {
         batalTransfer();
+        getch();
         goto TRANSFER;
         return;
     }
