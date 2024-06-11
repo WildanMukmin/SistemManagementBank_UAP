@@ -254,6 +254,7 @@ void menuRiwayatTransaksi(string nama){
     (pilihanMenuRiwayatTransaksi == '1') ? readFile(nama, "riwayatTransaksiMasuk") : readFile(nama, "riwayatTransaksiKeluar");
 }
 
+// Untuk baca isi dari file secara loop
 void readFile(string nama, string fileTujuan){
     ifstream file("data/" + nama + "/" + fileTujuan + ".txt");
     string line;
@@ -263,6 +264,7 @@ void readFile(string nama, string fileTujuan){
     file.close();
 }
 
+// konversi dari string ngambil bagian angkanya aja biar bisa di sortting
 int extractNominal(const string& str) {
     size_t pos = str.rfind("sebanyak ");
     if (pos != string::npos) {
@@ -322,6 +324,7 @@ void mergeSort(vector<string>& arr, int left, int right) {
     }
 }
 
+// ini baca file juga beda nya dia bakal di simpen ke vector
 vector <string> readFileVersiReturn(string nama, string fileTujuan){
     ifstream file("data/" + nama + "/" + fileTujuan + ".txt");
     vector <string> result;
@@ -333,6 +336,7 @@ vector <string> readFileVersiReturn(string nama, string fileTujuan){
     return result;
 }
 
+// ini hasil sorting yang dari kecil ke besar
 deque <string> sortByDuitAscending(vector <string> arr){
     deque <string> result;
     mergeSort(arr, 0, arr.size() - 1);
@@ -341,6 +345,7 @@ deque <string> sortByDuitAscending(vector <string> arr){
     return result;
 }
 
+// ini hasil sorting yang dari besar ke kecil
 deque <string> sortByDuitDescending(vector <string> arr){
     deque <string> result;
     mergeSort(arr, 0, arr.size() - 1);
