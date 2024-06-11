@@ -67,13 +67,20 @@ void createLineX(int x, int toX, int y, int tahan, char sytle);
 void createLineY(int y, int toY, int x, int tahan, char sytle);
 void createText(int x, int y, string text, int tahan);
 template <class T> void warna(T kata);
-void formLogin();
 void boxOpsiLogin();
 void selamatdatang();
 void boxCreateAccount();
 void notifikasiAkunBerhasil(string nama);
 void infoAkun(string nama);
 void strukPembayaran(string nama, string namaTujuan, long long unsigned int nominalTransfer);
+void formLogin();
+void formCreateAkun();
+void boxBeranda();
+void formRiwayatTransaksi();
+void formRiwayatTransaksiMasuk();
+void formRiwayatTransaksiKeluar();
+void formTransfer();
+void konfirTransfer();
 
 // <------------------ Prototype Fungsi Utama ------------------>
 
@@ -201,15 +208,6 @@ template <class T> void warna(T kata){
 //------------tempat tempat void tampilan------------//
 
 // tampilan untuk form login
-void formLogin(){
-    createLineX(10, 60, 10);
-    createLineX(10, 60, 30);
-    createLineY(10, 30, 10);
-    createLineY(10, 30, 60);
-
-    linexy(12,12); cout << "Masukan Nama Anda : ";
-    linexy(12,14); cout << "Masukan PIN Anda : ";
-}
 
 // box opsi login
 void boxOpsiLogin()
@@ -327,4 +325,222 @@ void strukPembayaran(string nama, string namaTujuan, long long unsigned int nomi
     cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
     cout << "    \\/______________________________________________________/ " << endl;
     cout << RESET;
+}
+
+void formLogin()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                               Log In!                                 ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )                                                                       ( (");
+    createText(1, 9, "( (                                                                         ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (            Masukkan Nama Anda :                                         ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (            Buat PIN Anda      :                                         ) )");
+    createText(1, 14, " ) )                                                                       ( (");
+    createText(1, 15, "( (                                                                         ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
+
+
+// tampilan untuk form buat akun
+void formCreateAkun()
+{
+    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                     BUAT AKUN!                                        ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )                                                                       ( (");
+    createText(1, 9, "( (                                                                         ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (            Masukkan Nama Anda :                                         ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (            Setiap kali Anda masuk ke menu m-Banking, Anda memerlukan    ) )");
+    createText(1, 14, " ) )           PIN terdiri dari 6 digit.                                   ( (");
+    createText(1, 15, "( (                                                                         ) )");
+    createText(1, 16, " ) )           Buat PIN Anda :                                             ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
+
+
+//tampilan beranda
+void boxBeranda()
+{
+    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )        __  __   ____              _    _                              ( (");
+    createText(1, 5, "( (        |  \\/  | | __ )  __ _ _ __ | | _(_)_ __   __ _                   ) )");
+    createText(1, 6, " ) )       | |\\/| | |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` |                 ( (");
+    createText(1, 7, "( (        | |  | | | |_) | (_| | | | |   <| | | | | (_| |                  ) )");
+    createText(1, 8, " ) )       |_|  |_| |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |                 ( (");
+    createText(1, 9, "( (                                                 |___/                   ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )       1. Log In                                                       ( (");
+    createText(1, 13, "( (        2. Buat Akun                                                     ) )");
+    createText(1, 14, " ) )       3. Keluar                                                       ( (");
+    createText(1, 15, "( (        Pilih Opsi:                                                      ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
+
+//tampilan riwayat transaksi
+void formRiwayatTransaksi()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                          Riwayat Transaksi                            ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )                                                                       ( (");
+    createText(1, 9, "( (                                                                         ) )");
+    createText(1, 10, " ) )                                                                       ( (");
+    createText(1, 11, "( (            Jenis Transaksi                                              ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (            1. Transaksi Masuk                                           ) )");
+    createText(1, 14, " ) )                                                                       ( (");
+    createText(1, 15, "( (            2. Transaksi Keluar                                          ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (            Pilih Opsi :                                                 ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
+
+//tampilan urutan transaksi masuk
+void formRiwayatTransaksiMasuk()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                     Riwayat Transaksi Masuk                           ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
+    createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
+    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (                                                                         ) )");
+    createText(1, 14, " ) )                                                                       ( (");
+    createText(1, 15, "( (                                                                         ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (                                                                         ) )");
+}
+
+//tampilan urutan transaksi keluar
+void formRiwayatTransaksiKeluar()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                     Riwayat Transaksi Keluar                          ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )            1. Terbesar -> Kecil                                       ( (");
+    createText(1, 9, "( (             2. Terkecil -> Besar                                        ) )");
+    createText(1, 10, " ) )           :                                                           ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )                                                                       ( (");
+    createText(1, 13, "( (                                                                         ) )");
+    createText(1, 14, " ) )                                                                       ( (");
+    createText(1, 15, "( (                                                                         ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (                                                                         ) )");
+}
+
+//tampilan awal transfer
+void formTransfer()
+{
+	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
+    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
+    createText(1, 3, "( (                                                                         ) )");
+    createText(1, 4, " ) )                                                                       ( (");
+    createText(1, 5, "( (                                                                         ) )");
+    createText(1, 6, " ) )                                M-Transfer                             ( (");
+    createText(1, 7, "( (                                                                         ) )");
+    createText(1, 8, " ) )           Dari Rekening   :                                          ( (");
+    createText(1, 9, "( (                                                                         ) )");
+    createText(1, 10, " ) )           Rekening Tujuan :                                           ( (");
+    createText(1, 11, "( (                                                                         ) )");
+    createText(1, 12, " ) )           Nominal         :                                           ( (");
+    createText(1, 13, "( (                                                                         ) )");
+    createText(1, 14, " ) )                                                                       ( (");
+    createText(1, 15, "( (                                                                         ) )");
+    createText(1, 16, " ) )                                                                       ( (");
+    createText(1, 17, "( (                                                                         ) )");
+    createText(1, 18, " ) )                                                                       ( (");
+    createText(1, 19, "( (                                                                         ) )");
+    createText(1, 20, " ) )                                                                       ( (");
+    createText(1, 21, "( (                                                                         ) )");
+    createText(1, 22, " ) )                                                                       ( (");
+    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
+    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
+}
+
+//tampilan awal transfer
+void konfirTransfer()
+{
+    createText(1, 1, " __| |____________________________________________| |__");
+    createText(1, 2, "(__   ____________________________________________   __)");
+    createText(1, 3, "   | |                                            | |");
+    createText(1, 4, "   | |       Apakah Rekening dan Nominal          | |");
+    createText(1, 5, "   | |       Sudah sesuai ? (Y/N)                 | |");
+    createText(1, 6, "   | |                                            | |");
+    createText(1, 7, "   | |                                            | |");
+    createText(1, 8, "   | |       PIN Anda :                           | |");
+    createText(1, 9, " __| |____________________________________________| |__");
+    createText(1, 10, "(__   ____________________________________________   __)");
+    createText(1, 11, "   | |                                            | |");
 }

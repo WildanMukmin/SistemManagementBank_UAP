@@ -8,16 +8,16 @@ int main(){
     getch();
     GATEWAY:
     system("cls");
-    boxOpsiLogin();
+    boxBeranda();
     
-    linexy(96,21);
+    linexy(25,15);
     char pilihan;cin >> pilihan;
     if(pilihan == '1'){
         FORM:
         system("cls");
         formLogin();
-        linexy (33, 12); cin >> nama;
-        linexy (33, 14); cin >> pin;
+        linexy (37, 11); cin >> nama;
+        linexy (37, 13); cin >> pin;
         bool valid = login(nama, pin);
         if(valid){
             goto HOME;
