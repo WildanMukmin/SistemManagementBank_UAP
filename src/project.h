@@ -1,35 +1,5 @@
 #include "header.h"
 
-// <------------------ Prototype ------------------>
-
-void createAkun();
-bool login(string nama, string pin);
-deque<string> database();
-void infoAkun(string nama);
-void transfer(string nama, deque<string> listPengguna);
-string getNoRek(string nama);
-long long unsigned int getSaldo(string nama);
-void updateSaldo(string nama, long long unsigned int saldoTerbaru);
-string generateRandomNoRek(int n);
-string getStatusRiwayatTransaksiMasuk(string nama);
-void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nominal);
-string getStatusRiwayatTransaksiKeluar(string nama);
-void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal);
-void menuRiwayatTransaksi(string nama);
-void readFile(string nama, string fileTujuan);
-vector <string> readFileVersiReturn(string nama, string fileTujuan);
-void mergeSort(vector<string>& arr, int left, int right);
-void merge(vector<string>& arr, int left, int mid, int right);
-int extractNominal(const string& str);
-vector <string> readFileVersiReturn(string nama, string fileTujuan);
-deque <string> sortByDuitAscending(vector <string> arr);
-deque <string> sortByDuitDescending(vector <string> arr);
-void notifikasiAkunBerhasil(string nama);
-class Nasabah;
-
-// <------------------ End Prototype ------------------>
-
-
 // <------------------ Fungsi Fungsi Utama ------------------>
 
 // class nasabah
@@ -82,26 +52,11 @@ class Nasabah{
 // pilihan buat akun
 void createAkun() {
     string nama, pin;
-    int W = 42;
-    int V = 7;
-    cout << CYAN;
-    linexy(W, V); cout << "   .'_________________________________________  '."; V++;
-    linexy(W, V); cout << "  : .'                                         '. :"; V++;
-    linexy(W, V); cout << "  | |    ____________________________________   | |"; V++;
-    linexy(W, V); cout << "  | |  .:____________________________________:. | |"; V++;
-    linexy(W, V); cout << "  | |  |             CREATE ACCOUNT             | |"; V++;
-    linexy(W, V); cout << "  | |  |                                        | |"; V++;
-    linexy(W, V); cout << "  | |  |  Masukan Nama     :                    | |"; V++;
-    linexy(W, V); cout << "  | |  |  Masukan Pin      :                    | |"; V++;
-    linexy(W, V); cout << "  | |  |                                        | |"; V++;
-    linexy(W, V); cout << "  | |  '.______________________________________.' |"; V++;
-    linexy(W, V); cout << "  | |                                           | |"; V++;
-    linexy(W, V); cout << "  : '._________________________________________.' :"; V++;
-    linexy(W, V); cout << "   .____________________\\__/____________________."; V++;
-    cout << RESET;
 
-    linexy(W + 29, V - 7); cin >> nama;
-    linexy(W + 29, V - 6); cin >> pin;
+    boxCreateAccount();
+
+    linexy(71, 13); cin >> nama;
+    linexy(71, 14); cin >> pin;
 
     deque<string> listPengguna = database();
     Nasabah(nama, pin, generateRandomNoRek(listPengguna.size()));
@@ -114,9 +69,7 @@ void createAkun() {
     updateListPengguna.close();
 
     notifikasiAkunBerhasil(nama);
-}
-void notifikasiAkunBerhasil(string nama) {
-    cout << "Akun berhasil dibuat untuk " << nama << "." << endl;
+    getch();
 }
 
 // pilihan dari login
@@ -156,20 +109,6 @@ string generateRandomNoRek(int n){
         unsigned long long randomNumber = dis(gen);
         if(i == n - 1)return to_string(randomNumber);
     }
-}
-
-// Fungsi Menampilkan Detail Informasi Akun
-void infoAkun(string nama) {
-    cout << CYAN;
-    cout << "    _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._" << endl;
-    cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
-    cout << " ( (                                                         ) )" << endl;
-    cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "                    ) )" << endl;
-    cout << "  ) )                                                       ( (" << endl;
-    cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
-    cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
-    cout << RESET;
 }
 
 // Fungsi mengambil nomor rekening
@@ -244,23 +183,7 @@ void transfer(string nama, deque<string> listPengguna){
 
     updateSaldo(nama, saldoPengirim);
     updateSaldo(namaTujuan, saldoPenerima);
-    cout << CYAN;
-     cout << "     _______________________________________________________" << endl;
-    cout << "    //                                                       \\ " << endl;
-    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
-    cout << "    \\/''''''''''''''''''''''''''''''''''''''''''''''''''''''/ " << endl;
-    cout << "    (                                                      ( " << endl;
-    cout << "     )                                                      )" << endl;
-    cout << "    (        Transfer Berhasil Dari " << setw(20) << left << nama << "   (" << endl;
-    cout << "     )       ke " << setw(20) << left << namaTujuan << "                        )" << endl;
-    cout << "    (        sejumlah " << setw(20) << left << nominalTransfer << "                 ( " << endl;
-    cout << "     )                                                      )" << endl;
-    cout << "    (                                                      ( " << endl;
-    cout << "     )                                                      )" << endl;
-    cout << "    /\''''''''''''''''''''''''''''''''''''''''''''''''''''''\\ " << endl;
-    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
-    cout << "    \\/______________________________________________________/ " << endl;
-    cout << RESET;
+    strukPembayaran(nama, namaTujuan, nominalTransfer);
     updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
     updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
 }

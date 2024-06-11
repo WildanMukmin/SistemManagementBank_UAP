@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 #include <conio.h>
 #include <windows.h>
-// #include "mmsystem.h"
-
+#include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")
 
 using namespace std;
@@ -58,6 +57,52 @@ using namespace std;
 #define UNDERLINE "\033[4m"
 #define HIDDEN "\033[8m"
 #define CORET "\033[9m"
+
+
+// <------------------ Prototype Header ------------------>
+
+void linexy(int x, int y);
+void loading(int x, int y);
+void createLineX(int x, int toX, int y, int tahan, char sytle);
+void createLineY(int y, int toY, int x, int tahan, char sytle);
+void createText(int x, int y, string text, int tahan);
+template <class T> void warna(T kata);
+void formLogin();
+void boxOpsiLogin();
+void selamatdatang();
+void boxCreateAccount();
+void notifikasiAkunBerhasil(string nama);
+void infoAkun(string nama);
+void strukPembayaran(string nama, string namaTujuan, long long unsigned int nominalTransfer);
+
+// <------------------ Prototype Fungsi Utama ------------------>
+
+void createAkun();
+bool login(string nama, string pin);
+deque<string> database();
+void infoAkun(string nama);
+void transfer(string nama, deque<string> listPengguna);
+string getNoRek(string nama);
+long long unsigned int getSaldo(string nama);
+void updateSaldo(string nama, long long unsigned int saldoTerbaru);
+string generateRandomNoRek(int n);
+string getStatusRiwayatTransaksiMasuk(string nama);
+void updateRiwayatTransaksiMasuk(string nama, string namaPengirim, string nominal);
+string getStatusRiwayatTransaksiKeluar(string nama);
+void updateRiwayatTransaksiKeluar(string nama, string namaPenerima, string nominal);
+void menuRiwayatTransaksi(string nama);
+void readFile(string nama, string fileTujuan);
+vector <string> readFileVersiReturn(string nama, string fileTujuan);
+void mergeSort(vector<string>& arr, int left, int right);
+void merge(vector<string>& arr, int left, int mid, int right);
+int extractNominal(const string& str);
+vector <string> readFileVersiReturn(string nama, string fileTujuan);
+deque <string> sortByDuitAscending(vector <string> arr);
+deque <string> sortByDuitDescending(vector <string> arr);
+void notifikasiAkunBerhasil(string nama);
+class Nasabah;
+
+// <------------------ End Prototype ------------------>
 
 // set koordinat
 void linexy(int x, int y)
@@ -205,6 +250,7 @@ void boxOpsiLogin()
 	cout << RESET;
 }
 
+// tampilan selamat datang
 void selamatdatang()
 {
 	cout << CYAN;
@@ -215,4 +261,69 @@ void selamatdatang()
     createText(20, 5, " |____/ \\___|_|\\__,_|_| |_| |_|\\__,_|\\__| |____/ \\__,_|\\__\\__,_|_| |_|\\__, (_)");
     createText(20, 6, "                                                                       |___/   ");
 	cout << RESET;
+}
+
+// tampilan untuk membuat akun
+void boxCreateAccount(){
+    int W = 42;
+    int V = 7;
+
+    cout << CYAN;
+    linexy(W, V); cout << "   .'_________________________________________  '."; V++;
+    linexy(W, V); cout << "  : .'                                         '. :"; V++;
+    linexy(W, V); cout << "  | |    ____________________________________   | |"; V++;
+    linexy(W, V); cout << "  | |  .:____________________________________:. | |"; V++;
+    linexy(W, V); cout << "  | |  |             CREATE ACCOUNT             | |"; V++;
+    linexy(W, V); cout << "  | |  |                                        | |"; V++;
+    linexy(W, V); cout << "  | |  |  Masukan Nama     :                    | |"; V++;
+    linexy(W, V); cout << "  | |  |  Masukan Pin      :                    | |"; V++;
+    linexy(W, V); cout << "  | |  |                                        | |"; V++;
+    linexy(W, V); cout << "  | |  '.______________________________________.' |"; V++;
+    linexy(W, V); cout << "  | |                                           | |"; V++;
+    linexy(W, V); cout << "  : '._________________________________________.' :"; V++;
+    linexy(W, V); cout << "   .____________________\\__/____________________."; V++;
+    cout << RESET;
+}
+
+// tampilan notfiikasi
+void notifikasiAkunBerhasil(string nama) {
+    cout << CYAN;
+	linexy(52,6);
+	cout << "Akun berhasil dibuat untuk " << nama << "!" << endl;
+    cout << RESET;
+}
+
+// Fungsi Menampilkan Detail Informasi Akun
+void infoAkun(string nama) {
+    cout << CYAN;
+    cout << "    _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._" << endl;
+    cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
+    cout << " ( (                                                         ) )" << endl;
+    cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
+    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "             ) )" << endl;
+    cout << "  ) )                                                       ( (" << endl;
+    cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
+    cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
+    cout << RESET;
+}
+
+// tampilan untuk struk pembayaran
+void strukPembayaran(string nama, string namaTujuan, long long unsigned int nominalTransfer){
+    cout << CYAN;
+    cout << "     _______________________________________________________" << endl;
+    cout << "    //                                                       \\ " << endl;
+    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
+    cout << "    \\/''''''''''''''''''''''''''''''''''''''''''''''''''''''/ " << endl;
+    cout << "    (                                                      ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    (        Transfer Berhasil Dari " << setw(20) << left << nama << "   (" << endl;
+    cout << "     )       ke " << setw(20) << left << namaTujuan << "                        )" << endl;
+    cout << "    (        sejumlah " << setw(20) << left << nominalTransfer << "                 ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    (                                                      ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    /\''''''''''''''''''''''''''''''''''''''''''''''''''''''\\ " << endl;
+    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
+    cout << "    \\/______________________________________________________/ " << endl;
+    cout << RESET;
 }

@@ -4,3 +4,6 @@ Mengirim Uang ke : riskur sebanyak 70000
 Mengirim Uang ke : mub sebanyak 5000
 Mengirim Uang ke : mub sebanyak 10000
 Mengirim Uang ke : mub sebanyak 70000
+Mengirim Uang ke : wildan sebanyak 100000000
+Mengirim Uang ke : dea sebanyak 10000000
+Mengirim Uang ke : Delia sebanyak 100000

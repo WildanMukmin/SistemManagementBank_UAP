@@ -44,7 +44,7 @@ int main(){
         createAkun();
         system("cls");
         goto GATEWAY;
-    }
+    }else exit(0);
 
     // <---------------- pengecekan data yang sudah ada ---------------->
 
