@@ -40,7 +40,9 @@ int main(){
         }
     }else if(pilihan == '2'){
         FORMCREATEAKUN:
+        system("cls");
         createAkun();
+        system("cls");
         goto GATEWAY;
     }
 

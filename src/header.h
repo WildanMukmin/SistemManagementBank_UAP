@@ -169,6 +169,7 @@ void formLogin(){
 // box opsi login
 void boxOpsiLogin()
 {
+	cout << CYAN;
 	createText(54, 1, "                     ,---.           ,---.");
 	createText(54, 2, "                    / /'`.'..''''--./,''\\ \\");
 	createText(54, 3, "                    \\ \\    _       _    / /");
@@ -201,14 +202,17 @@ void boxOpsiLogin()
 	createText(54, 30, "                  ,'   ..   `     '    ..   `.");
 	createText(54, 31, "                 /            )  (           '");
 	createText(54, 32, "                 `..........'    `...........'");
+	cout << RESET;
 }
 
 void selamatdatang()
 {
+	cout << CYAN;
     createText(20, 1, "  ____       _                       _     ____        _                    _ ");
     createText(20, 2, " / ___|  ___| | __ _ _ __ ___   __ _| |_  |  _ \\  __ _| |_ __ _ _ __   __ _| |");
     createText(20, 3, " \\___ \\ / _ \\ |/ _` | '_ ` _ \\ / _` | __| | | | |/ _` | __/ _` | '_ \\ / _` | |");
     createText(20, 4, "  ___) |  __/ | (_| | | | | | | (_| | |_  | |_| | (_| | || (_| | | | | (_| |_|");
     createText(20, 5, " |____/ \\___|_|\\__,_|_| |_| |_|\\__,_|\\__| |____/ \\__,_|\\__\\__,_|_| |_|\\__, (_)");
     createText(20, 6, "                                                                       |___/   ");
+	cout << RESET;
 }

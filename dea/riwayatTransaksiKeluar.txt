@@ -1,1 +1,3 @@
-Belum Ada Transaksi
+Mengirim Uang ke : Delia sebanyak 1
+Mengirim Uang ke : eko sebanyak 1
+Mengirim Uang ke : Delia sebanyak 1

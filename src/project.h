@@ -24,6 +24,7 @@ int extractNominal(const string& str);
 vector <string> readFileVersiReturn(string nama, string fileTujuan);
 deque <string> sortByDuitAscending(vector <string> arr);
 deque <string> sortByDuitDescending(vector <string> arr);
+void notifikasiAkunBerhasil(string nama);
 class Nasabah;
 
 // <------------------ End Prototype ------------------>
@@ -79,21 +80,43 @@ class Nasabah{
 };
 
 // pilihan buat akun
-void createAkun(){   
-	string nama;
-	cin >> nama;
-	string pin;
-	cin >> pin;
-    deque <string> listPengguna;
-    ifstream checkListPengguna;
-	checkListPengguna.open("listPengguna.txt");
-    string data;
-	while (!checkListPengguna.eof()){
-		checkListPengguna >> data;
-        listPengguna.push_back(data);
-	}
-	checkListPengguna.close();
+void createAkun() {
+    string nama, pin;
+    int W = 42;
+    int V = 7;
+    cout << CYAN;
+    linexy(W, V); cout << "   .'_________________________________________  '."; V++;
+    linexy(W, V); cout << "  : .'                                         '. :"; V++;
+    linexy(W, V); cout << "  | |    ____________________________________   | |"; V++;
+    linexy(W, V); cout << "  | |  .:____________________________________:. | |"; V++;
+    linexy(W, V); cout << "  | |  |             CREATE ACCOUNT             | |"; V++;
+    linexy(W, V); cout << "  | |  |                                        | |"; V++;
+    linexy(W, V); cout << "  | |  |  Masukan Nama     :                    | |"; V++;
+    linexy(W, V); cout << "  | |  |  Masukan Pin      :                    | |"; V++;
+    linexy(W, V); cout << "  | |  |                                        | |"; V++;
+    linexy(W, V); cout << "  | |  '.______________________________________.' |"; V++;
+    linexy(W, V); cout << "  | |                                           | |"; V++;
+    linexy(W, V); cout << "  : '._________________________________________.' :"; V++;
+    linexy(W, V); cout << "   .____________________\\__/____________________."; V++;
+    cout << RESET;
+
+    linexy(W + 29, V - 7); cin >> nama;
+    linexy(W + 29, V - 6); cin >> pin;
+
+    deque<string> listPengguna = database();
     Nasabah(nama, pin, generateRandomNoRek(listPengguna.size()));
+
+    listPengguna.push_back(nama);
+    ofstream updateListPengguna("listPengguna.txt");
+    for (size_t i = 0; i < listPengguna.size(); ++i) {
+        updateListPengguna << listPengguna[i] << endl;
+    }
+    updateListPengguna.close();
+
+    notifikasiAkunBerhasil(nama);
+}
+void notifikasiAkunBerhasil(string nama) {
+    cout << "Akun berhasil dibuat untuk " << nama << "." << endl;
 }
 
 // pilihan dari login
@@ -137,6 +160,7 @@ string generateRandomNoRek(int n){
 
 // Fungsi Menampilkan Detail Informasi Akun
 void infoAkun(string nama) {
+    cout << CYAN;
     cout << "    _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._" << endl;
     cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
     cout << " ( (                                                         ) )" << endl;
@@ -145,6 +169,7 @@ void infoAkun(string nama) {
     cout << "  ) )                                                       ( (" << endl;
     cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
     cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
+    cout << RESET;
 }
 
 // Fungsi mengambil nomor rekening
@@ -219,6 +244,7 @@ void transfer(string nama, deque<string> listPengguna){
 
     updateSaldo(nama, saldoPengirim);
     updateSaldo(namaTujuan, saldoPenerima);
+    cout << CYAN;
      cout << "     _______________________________________________________" << endl;
     cout << "    //                                                       \\ " << endl;
     cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
@@ -234,7 +260,7 @@ void transfer(string nama, deque<string> listPengguna){
     cout << "    /\''''''''''''''''''''''''''''''''''''''''''''''''''''''\\ " << endl;
     cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
     cout << "    \\/______________________________________________________/ " << endl;
-
+    cout << RESET;
     updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
     updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
 }
