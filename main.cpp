@@ -53,12 +53,10 @@ int main(){
 
     PILIHANOPSI:
         system("cls") ;
-    cout << greeting << endl;
-    cout << "1. Info Akun" << endl;
-    cout << "2. Transfer" << endl;
-    cout << "3. Riwayat Transaksi" << endl;
-    cout << "4. Log Out" << endl;
-    char pilihanHome; cin >> pilihanHome;
+    menuHome();
+    char pilihanHome; 
+    linexy(19,17);
+    cin >> pilihanHome;
 
     if(pilihanHome == '1') {
         system("cls") ;
