@@ -137,26 +137,35 @@ long long unsigned int getSaldo(string nama){
 
 // Funsgi untuk melakukan transfer
 void transfer(string nama, deque<string> listPengguna){
-    cout << "Masukan Nomor Rekening Tujuan : ";
-    string noRekTujuan;cin >> noRekTujuan;
-    cout << "Masukan Nominal Transfer : ";
-    long long unsigned int nominalTransfer;cin >> nominalTransfer;
+      TRANSFER:
+    system("cls");
+    formTransfer();
+    string noRekTujuan;
+    linexy (35, 10); cin >> noRekTujuan;
+    long long unsigned int nominalTransfer;
+    linexy (35, 12);cin >> nominalTransfer;
     string namaTujuan;
+    system("cls");
 
-    cout << "Apakah Rekening dan Nominal Sudah Sesuai? (y/n)" << endl;
-    char konfirTransfer; cin >> konfirTransfer;
-    if(konfirTransfer == 'y' || konfirTransfer == 'Y'){
+
         ULANGIVERIFIKASIPIN:
-        cout << "Masukan PIN Anda : ";
-        string pin;cin >> pin;
+    konfirTransfer();
+    char konfirTransfer; 
+    linexy (14, 6);cin >> konfirTransfer;
+    if(konfirTransfer == 'y' || konfirTransfer == 'Y'){
+        string pin;
+        linexy(24,8); cin >> pin;
+        system("cls");
         if(login(nama, pin)){
-            cout << "Transfer Berhasil" << endl;
+            strukPembayaran(nama, namaTujuan, nominalTransfer);
+            system("cls");
         }else{
-            cout << "PIN anda Salah" << endl;
+            salahPinTransfer();
             goto ULANGIVERIFIKASIPIN;
         }
     }else {
-        cout << "Transaksi dibatalkan!" << endl;
+        batalTransfer();
+        goto TRANSFER;
         return;
     }
 
@@ -184,6 +193,7 @@ void transfer(string nama, deque<string> listPengguna){
     updateSaldo(nama, saldoPengirim);
     updateSaldo(namaTujuan, saldoPenerima);
     strukPembayaran(nama, namaTujuan, nominalTransfer);
+    system("cls");
     updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
     updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
 }
@@ -246,12 +256,80 @@ string getStatusRiwayatTransaksiKeluar(string nama){
 
 // tampilan menu riwayat transaksi
 void menuRiwayatTransaksi(string nama){
-    cout << "1. riwayat transaksi masuk" << endl;
-    cout << "2. riwayat transaksi keluar" << endl;
-    
-    cout << "masukan pilihan anda : ";
-    char pilihanMenuRiwayatTransaksi; cin >> pilihanMenuRiwayatTransaksi;
-    (pilihanMenuRiwayatTransaksi == '1') ? readFile(nama, "riwayatTransaksiMasuk") : readFile(nama, "riwayatTransaksiKeluar");
+    system("cls");
+    formRiwayatTransaksi();
+    char pilihanMenuRiwayatTransaksi;
+    linexy(29,17);
+    cin >> pilihanMenuRiwayatTransaksi;
+    //(pilihanMenuRiwayatTransaksi == '1') ? readFile(nama, "riwayatTransaksiMasuk") : readFile(nama, "riwayatTransaksiKeluar");
+    //linexy(16,12);
+    int y = 12;
+    if(pilihanMenuRiwayatTransaksi == '1'){
+        formRiwayatTransaksiMasuk();
+        vector<string>listRiwayatTransaksi = readFileVersiReturn(nama, "riwayatTransaksiMasuk");
+        for(auto i : listRiwayatTransaksi){
+            linexy(16,y);
+            cout<<i<<endl;
+            y++;
+        }
+        char pilihSort;
+        linexy(17,10); cin>>pilihSort;
+        if(pilihSort == '1') {
+            y = 12;
+            formRiwayatTransaksiMasuk();
+            stack<string> riwayatTransaksiMasukSort = sortByDuitAscending(listRiwayatTransaksi);
+            while (!riwayatTransaksiMasukSort.empty()) {
+                linexy(16, y);
+                cout << riwayatTransaksiMasukSort.top() << endl;
+                riwayatTransaksiMasukSort.pop();
+                y++;
+            }
+        }
+        else if (pilihSort == '2') {
+            y = 12;
+            formRiwayatTransaksiMasuk();
+            queue<string> riwayatTransaksiMasukSort = sortByDuitDescending(listRiwayatTransaksi);
+            while (!riwayatTransaksiMasukSort.empty()) {
+                linexy(16, y);
+                cout << riwayatTransaksiMasukSort.front() << endl;
+                riwayatTransaksiMasukSort.pop();
+                y++;
+            }
+        }
+    }else{
+        formRiwayatTransaksiKeluar();
+        vector<string>listRiwayatTransaksi = readFileVersiReturn(nama, "riwayatTransaksiKeluar");
+        for(auto i : listRiwayatTransaksi){
+            linexy(16,y);
+            cout<<i<<endl;
+            y++;
+        }
+        char pilihSort;
+        linexy(17,10); cin>>pilihSort;
+        if(pilihSort == '1') {
+            y = 12;
+            formRiwayatTransaksiKeluar();
+            stack<string> riwayatTransaksiKeluarSort = sortByDuitAscending(listRiwayatTransaksi);
+            while (!riwayatTransaksiKeluarSort.empty()) {
+                linexy(16, y);
+                cout << riwayatTransaksiKeluarSort.top() << endl;
+                riwayatTransaksiKeluarSort.pop();
+                y++;
+            }
+        }
+        else if (pilihSort == '2') {
+            y = 12;
+            formRiwayatTransaksiKeluar();
+            queue<string> riwayatTransaksiKeluarSort = sortByDuitDescending(listRiwayatTransaksi);
+            while (!riwayatTransaksiKeluarSort.empty()) {
+                linexy(16, y);
+                cout << riwayatTransaksiKeluarSort.front() << endl;
+                riwayatTransaksiKeluarSort.pop();
+                y++;
+            }
+        }
+
+    }
 }
 
 // Untuk baca isi dari file secara loop

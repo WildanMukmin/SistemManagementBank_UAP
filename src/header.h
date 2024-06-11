@@ -81,6 +81,8 @@ void formRiwayatTransaksiMasuk();
 void formRiwayatTransaksiKeluar();
 void formTransfer();
 void konfirTransfer();
+void salahPinTransfer();
+void batalTransfer();
 
 // <------------------ Prototype Fungsi Utama ------------------>
 
@@ -327,6 +329,7 @@ void strukPembayaran(string nama, string namaTujuan, long long unsigned int nomi
     cout << RESET;
 }
 
+//tampilan login
 void formLogin()
 {
 	createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
@@ -345,36 +348,6 @@ void formLogin()
     createText(1, 14, " ) )                                                                       ( (");
     createText(1, 15, "( (                                                                         ) )");
     createText(1, 16, " ) )                                                                       ( (");
-    createText(1, 17, "( (                                                                         ) )");
-    createText(1, 18, " ) )                                                                       ( (");
-    createText(1, 19, "( (                                                                         ) )");
-    createText(1, 20, " ) )                                                                       ( (");
-    createText(1, 21, "( (                                                                         ) )");
-    createText(1, 22, " ) )                                                                       ( (");
-    createText(1, 23, "( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )");
-    createText(1, 24, " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,'");
-}
-
-
-// tampilan untuk form buat akun
-void formCreateAkun()
-{
-    createText(1, 1, "   _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._");
-    createText(1, 2, " ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`.");
-    createText(1, 3, "( (                                                                         ) )");
-    createText(1, 4, " ) )                                                                       ( (");
-    createText(1, 5, "( (                                                                         ) )");
-    createText(1, 6, " ) )                     BUAT AKUN!                                        ( (");
-    createText(1, 7, "( (                                                                         ) )");
-    createText(1, 8, " ) )                                                                       ( (");
-    createText(1, 9, "( (                                                                         ) )");
-    createText(1, 10, " ) )                                                                       ( (");
-    createText(1, 11, "( (            Masukkan Nama Anda :                                         ) )");
-    createText(1, 12, " ) )                                                                       ( (");
-    createText(1, 13, "( (            Setiap kali Anda masuk ke menu m-Banking, Anda memerlukan    ) )");
-    createText(1, 14, " ) )           PIN terdiri dari 6 digit.                                   ( (");
-    createText(1, 15, "( (                                                                         ) )");
-    createText(1, 16, " ) )           Buat PIN Anda :                                             ( (");
     createText(1, 17, "( (                                                                         ) )");
     createText(1, 18, " ) )                                                                       ( (");
     createText(1, 19, "( (                                                                         ) )");
@@ -540,6 +513,37 @@ void konfirTransfer()
     createText(1, 6, "   | |                                            | |");
     createText(1, 7, "   | |                                            | |");
     createText(1, 8, "   | |       PIN Anda :                           | |");
+    createText(1, 9, " __| |____________________________________________| |__");
+    createText(1, 10, "(__   ____________________________________________   __)");
+    createText(1, 11, "   | |                                            | |");
+}
+
+//tampilan awal transfer
+void salahPinTransfer()
+{
+    createText(1, 1, " __| |____________________________________________| |__");
+    createText(1, 2, "(__   ____________________________________________   __)");
+    createText(1, 3, "   | |                                            | |");
+    createText(1, 4, "   | |                                            | |");
+    createText(1, 5, "   | |                                            | |");
+    createText(1, 6, "   | |         PIN yang Anda Masukkan Salah       | |");
+    createText(1, 7, "   | |                                            | |");
+    createText(1, 8, "   | |                                            | |");
+    createText(1, 9, " __| |____________________________________________| |__");
+    createText(1, 10, "(__   ____________________________________________   __)");
+    createText(1, 11, "   | |                                            | |");
+}
+//tampilan awal transfer
+void batalTransfer()
+{
+    createText(1, 1, " __| |____________________________________________| |__");
+    createText(1, 2, "(__   ____________________________________________   __)");
+    createText(1, 3, "   | |                                            | |");
+    createText(1, 4, "   | |                                            | |");
+    createText(1, 5, "   | |                                            | |");
+    createText(1, 6, "   | |           Transaksi Dibatalkan!            | |");
+    createText(1, 7, "   | |                                            | |");
+    createText(1, 8, "   | |                                            | |");
     createText(1, 9, " __| |____________________________________________| |__");
     createText(1, 10, "(__   ____________________________________________   __)");
     createText(1, 11, "   | |                                            | |");

@@ -80,6 +80,7 @@ int main(){
         menuRiwayatTransaksi(nama);
         goto PILIHANOPSI;
     }
+    system("cls");
 
     // <---------------- End Menu Home ---------------->
 
