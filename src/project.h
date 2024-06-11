@@ -337,20 +337,20 @@ vector <string> readFileVersiReturn(string nama, string fileTujuan){
 }
 
 // ini hasil sorting yang dari kecil ke besar
-deque <string> sortByDuitAscending(vector <string> arr){
-    deque <string> result;
+stack <string> sortByDuitAscending(vector <string> arr){
+    stack <string> result;
     mergeSort(arr, 0, arr.size() - 1);
     // Menampilkan hasil urutan
-    for (const auto& i : arr) {result.push_back(i);}
+    for (const auto& i : arr) {result.push(i);}
     return result;
 }
 
 // ini hasil sorting yang dari besar ke kecil
-deque <string> sortByDuitDescending(vector <string> arr){
-    deque <string> result;
+queue <string> sortByDuitDescending(vector <string> arr){
+    queue <string> result;
     mergeSort(arr, 0, arr.size() - 1);
     // Menampilkan hasil urutan
-    for (const auto& i : arr) {result.push_front(i);}
+    for (const auto& i : arr) {result.push(i);}
     return result;
 }
 

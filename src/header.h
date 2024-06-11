@@ -97,8 +97,8 @@ void mergeSort(vector<string>& arr, int left, int right);
 void merge(vector<string>& arr, int left, int mid, int right);
 int extractNominal(const string& str);
 vector <string> readFileVersiReturn(string nama, string fileTujuan);
-deque <string> sortByDuitAscending(vector <string> arr);
-deque <string> sortByDuitDescending(vector <string> arr);
+stack <string> sortByDuitAscending(vector <string> arr);
+queue <string> sortByDuitDescending(vector <string> arr);
 void notifikasiAkunBerhasil(string nama);
 class Nasabah;
 
@@ -287,9 +287,10 @@ void boxCreateAccount(){
 
 // tampilan notfiikasi
 void notifikasiAkunBerhasil(string nama) {
+	string* orang = &nama;
     cout << CYAN;
 	linexy(52,6);
-	cout << "Akun berhasil dibuat untuk " << nama << "!" << endl;
+	cout << "Akun berhasil dibuat untuk " << *orang << "!" << endl;
     cout << RESET;
 }
 
