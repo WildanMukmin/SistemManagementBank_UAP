@@ -141,7 +141,7 @@ void infoAkun(string nama) {
     cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
     cout << " ( (                                                         ) )" << endl;
     cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "               ) )" << endl;
+    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "                    ) )" << endl;
     cout << "  ) )                                                       ( (" << endl;
     cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
     cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;
@@ -219,9 +219,22 @@ void transfer(string nama, deque<string> listPengguna){
 
     updateSaldo(nama, saldoPengirim);
     updateSaldo(namaTujuan, saldoPenerima);
+     cout << "     _______________________________________________________" << endl;
+    cout << "    //                                                       \\ " << endl;
+    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
+    cout << "    \\/''''''''''''''''''''''''''''''''''''''''''''''''''''''/ " << endl;
+    cout << "    (                                                      ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    (        Transfer Berhasil Dari " << setw(20) << left << nama << "   (" << endl;
+    cout << "     )       ke " << setw(20) << left << namaTujuan << "                        )" << endl;
+    cout << "    (        sejumlah " << setw(20) << left << nominalTransfer << "                 ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    (                                                      ( " << endl;
+    cout << "     )                                                      )" << endl;
+    cout << "    /\''''''''''''''''''''''''''''''''''''''''''''''''''''''\\ " << endl;
+    cout << "(O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)" << endl;
+    cout << "    \\/______________________________________________________/ " << endl;
 
-    cout << "Transfer Berhasil Dari " << nama << " ke " << namaTujuan << endl;
-    cout << "sejumlah " << nominalTransfer << endl;
     updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
     updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
 }
