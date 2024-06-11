@@ -35,7 +35,10 @@ int main(){
         createAkun();
         system("cls");
         goto GATEWAY;
-    }else exit(0);
+    }else if(pilihan == '3'){
+        main();
+    }
+    else exit(0);
 
     // <---------------- pengecekan data yang sudah ada ---------------->
 
@@ -71,6 +74,8 @@ int main(){
     else if(pilihanHome == '3') {
         menuRiwayatTransaksi(nama);
         goto PILIHANOPSI;
+    }else if(pilihanHome == '4'){
+        goto GATEWAY;
     }
     system("cls");
 

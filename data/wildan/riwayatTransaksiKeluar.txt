@@ -1,1 +1,3 @@
-Belum Ada Transaksi
+Mengirim Uang ke : mub sebanyak 4000
+Mengirim Uang ke : mub sebanyak 10000
+Mengirim Uang ke : mub sebanyak 5000

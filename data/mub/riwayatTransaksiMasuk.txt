@@ -1,1 +1,3 @@
-Belum Ada Transaksi
+Uang masuk dari : wildan sebanyak 4000
+Uang masuk dari : wildan sebanyak 10000
+Uang masuk dari : wildan sebanyak 5000

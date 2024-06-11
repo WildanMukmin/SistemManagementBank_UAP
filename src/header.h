@@ -265,7 +265,7 @@ void infoAkun(string nama) {
     cout << "  ,'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._`." << endl;
     cout << " ( (                                                         ) )" << endl;
     cout << setw(5) <<") )" << "          Nomor Rekening Anda : " << getNoRek(nama) << "             ( (" << endl;
-    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "                       ) )" << endl;
+    cout << " ( (" << "           Saldo Anda          : " << fixed << setprecision(2) << getSaldo(nama) << "              ) )" << endl;
     cout << "  ) )                                                       ( (" << endl;
     cout << " ( (_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._) )" << endl;
     cout << " `._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._,-.'" << endl;

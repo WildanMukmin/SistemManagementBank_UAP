@@ -158,8 +158,6 @@ void transfer(string nama, deque<string> listPengguna){
         linexy(24,8); cin >> pin;
         system("cls");
         if(login(nama, pin)){
-            strukPembayaran(nama, namaTujuan, nominalTransfer);
-            getch();
             system("cls");
         }else{
             salahPinTransfer();
@@ -197,6 +195,8 @@ void transfer(string nama, deque<string> listPengguna){
     updateSaldo(nama, saldoPengirim);
     updateSaldo(namaTujuan, saldoPenerima);
     strukPembayaran(nama, namaTujuan, nominalTransfer);
+    PlaySound(TEXT("music/suksesTransfer.wav"), NULL, SND_SYNC);
+    getch();
     system("cls");
     updateRiwayatTransaksiKeluar(nama, namaTujuan, to_string(nominalTransfer));
     updateRiwayatTransaksiMasuk(namaTujuan, nama, to_string(nominalTransfer));
@@ -301,7 +301,7 @@ void menuRiwayatTransaksi(string nama){
             }
         }
         getch();
-    }else{
+    }else if (pilihanMenuRiwayatTransaksi == '2'){
         formRiwayatTransaksiKeluar();
         vector<string>listRiwayatTransaksi = readFileVersiReturn(nama, "riwayatTransaksiKeluar");
         for(auto i : listRiwayatTransaksi){
